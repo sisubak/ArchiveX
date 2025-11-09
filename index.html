@@ -678,20 +678,19 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            background: rgba(28, 28, 28, 0.9);
+            background: rgba(20, 20, 20, 0.95);
             padding: 12px 25px;
             border-radius: 50px;
             border: 2px solid rgba(255, 7, 58, 0.3);
             backdrop-filter: blur(10px);
             animation: fadeInRight 1s ease backwards;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
         
         .github-stats:hover {
             border-color: var(--neon-red);
-            transform: scale(1.05);
             box-shadow: 0 0 30px rgba(255, 7, 58, 0.4);
+            transform: scale(1.02);
         }
         
         @keyframes fadeInRight {
@@ -708,7 +707,18 @@
         .github-icon {
             color: var(--neon-red);
             font-size: 24px;
-            animation: eyePulse 2s ease infinite;
+            animation: githubPulse 2s ease infinite;
+        }
+        
+        @keyframes githubPulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 5px rgba(255, 7, 58, 0.5));
+            }
+            50% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 10px rgba(255, 7, 58, 0.8));
+            }
         }
 
         @keyframes eyePulse {
@@ -732,8 +742,20 @@
         .visitor-badge {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
+        
+        .visitor-badge img {
+            height: 28px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .visitor-badge img:hover {
+            transform: scale(1.05);
+            filter: brightness(1.2);
+        }
+
 
         .visitor-label {
             color: var(--smoke);
@@ -741,6 +763,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
+            display: none;
         }
         
         .visitor-count {
@@ -1665,7 +1688,45 @@
                 transform: translateY(0);
             }
         }
-
+        .github-link-wrapper {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 99;
+            animation: fadeInRight 1s ease 0.5s backwards;
+        }
+        
+        .github-repo-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(20, 20, 20, 0.95);
+            border: 2px solid rgba(255, 7, 58, 0.3);
+            border-radius: 50px;
+            color: var(--silver);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .github-repo-link:hover {
+            border-color: var(--neon-red);
+            color: var(--neon-red);
+            transform: translateX(-5px);
+            box-shadow: 0 0 20px rgba(255, 7, 58, 0.3);
+        }
+        
+        .github-repo-link i {
+            font-size: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .github-link-wrapper {
+                display: none;
+            }
+        }
         .stat-box::before {
             content: '';
             position: absolute;
@@ -1937,17 +1998,24 @@
         }
 
         @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                left: -100%;
-                top: 70px;
-                flex-direction: column;
-                background: rgba(0, 0, 0, 0.98);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                padding: 20px 0;
-                border-top: 1px solid rgba(255, 7, 58, 0.3);
+            .github-stats {
+                top: auto;
+                bottom: 20px;
+                right: 50%;
+                transform: translateX(50%);
+                padding: 10px 20px;
+            }
+            
+            .github-stats:hover {
+                transform: translateX(50%) scale(1.02);
+            }
+            
+            .github-icon {
+                font-size: 20px;
+            }
+            
+            .visitor-badge img {
+                height: 24px;
             }
 
             .nav-menu.active {
@@ -2120,6 +2188,13 @@
                 <div class="hero-stat">
                     <div class="hero-stat-number">25+</div>
                     <div class="hero-stat-label">клиентов</div>
+                </div>
+                <div class="github-link-wrapper">
+                    <a href="https://github.com/sisubak/ArchiveX" target="_blank" class="github-repo-link">
+                        <i class="fab fa-github"></i>
+                        <span>star on github</span>
+                        <img src="https://img.shields.io/github/stars/sisubak/ArchiveX?style=social" alt="GitHub stars">
+                    </a>
                 </div>
                 <div class="hero-stat">
                     <div class="hero-stat-number">11</div>
