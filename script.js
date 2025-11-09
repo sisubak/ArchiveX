@@ -33,7 +33,7 @@ const clientsData = [
         badge: "ddnet • cheat",
         description: "мощный клиент для ddnet с отличным чит функционалом",
         image: "https://i.postimg.cc/nrPsS29g/dd-cff.png",
-        download: "https://drive.google.com/file/d/1l7-glaPC6VH8ffpkFG4w8r7h8wFOSymp/view?usp=sharing",
+        download: "https://github.com/gc-cff/cff-updates/releases/download/2.34-19.4-rc2/Loader.zip",
         arts: ["https://i.postimg.cc/9FGhQvZy/image.png"]
     },
     {
@@ -68,6 +68,14 @@ const clientsData = [
         description: "tclient, но с avoid freeze функционалом саппорт",
         image: "https://i.postimg.cc/CxpZ956N/image.png",
         download: "https://drive.google.com/file/d/1OBtyT__yH9MmuFxgcddySd5B2I3EfTL3/view?usp=sharing"
+    },
+    {
+        title: "soup",
+        type: "teeworlds cheat",
+        badge: "ddnet • cheat",
+        description: "копирка saiko, но с более улучшенным авойдом. Подойдет для легитов",
+        image: "https://i.postimg.cc/fyHYYktn/izobrazenie.png",
+        download: "https://drive.google.com/file/d/1m4_s9OnHBNlhoYIaKygvQutLbbKy3ucS/view?usp=sharing"
     },
     {
         title: "sakura client",
@@ -133,6 +141,14 @@ const clientsData = [
         description: "тематический клиент с одной функции которая добавляет визуального mario на сервер",
         image: "https://i.postimg.cc/qMqych6W/mario.png",
         download: "https://drive.google.com/file/d/1wrDlSev7R_3c33wP87tXaFD2dLireEL-/view?usp=sharing"
+    },
+    {
+        title: "dperx",
+        type: "ddnet",
+        badge: "ddnet • cheat",
+        desciption: "не совсем клиент. Инжектиться в сам дднет и добавляет чит через него",
+        image: "https://i.postimg.cc/yNZq5Z7K/izobrazenie.png",
+        download: "https://github.com/kiocode/DPerX-Reborn/releases/download/1.1.4/dperx-reborn-1.1.4-setup.exe"
     },
     {
         title: "pulse client",
