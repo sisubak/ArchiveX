@@ -236,6 +236,7 @@ const clientsData = [
     }
 ];
 
+let visitorCount = 0;
 let currentGallery = [];
 let currentGalleryIndex = 0;
 let securityClickCount = 0;
@@ -395,6 +396,56 @@ function animateCursor() {
 }
 
 animateCursor();
+
+async function initVisitorCounter() {
+    try {
+        const response = await fetch('https://api.countapi.xyz/hit/taped-dll.ru/visits');
+        const data = await response.json();
+        updateVisitorDisplay(data.value);
+        return;
+    } catch (error) {
+        console.log('CountAPI dead');
+    }
+    let visits = parseInt(localStorage.getItem('site_visits') || '0');
+    const lastVisit = localStorage.getItem('last_visit');
+    const now = Date.now();
+    const oneHour = 60 * 60 * 1000;
+    
+    if (!lastVisit || now - parseInt(lastVisit) > oneHour) {
+        visits++;
+        localStorage.setItem('site_visits', visits.toString());
+        localStorage.setItem('last_visit', now.toString());
+    }
+    
+    updateVisitorDisplay(visits);
+}
+
+
+function updateVisitorDisplay(count) {
+    const counterElement = document.getElementById('visitor-counter');
+    if (counterElement) {
+        counterElement.textContent = count.toLocaleString('ru-RU');
+    }
+}
+
+function animateCounter(element, start, end, duration) {
+    let current = start;
+    const increment = (end - start) / (duration / 16);
+    
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= end) {
+            current = end;
+            clearInterval(timer);
+        }
+        element.textContent = Math.floor(current).toLocaleString('ru-RU');
+    }, 16);
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    initVisitorCounter();
+});
 
 document.addEventListener('mousedown', () => {
     cursor.classList.add('clicked');
