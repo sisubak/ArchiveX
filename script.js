@@ -146,7 +146,7 @@ const clientsData = [
         title: "dperx",
         type: "ddnet",
         badge: "ddnet • cheat",
-        desciption: "не совсем клиент. Инжектиться в сам дднет и добавляет чит через него",
+        description: "не совсем клиент. Инжектиться в сам дднет и добавляет чит через него",
         image: "https://i.postimg.cc/yNZq5Z7K/izobrazenie.png",
         download: "https://github.com/kiocode/DPerX-Reborn/releases/download/1.1.4/dperx-reborn-1.1.4-setup.exe"
     },
