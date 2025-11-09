@@ -446,13 +446,23 @@ async function loadGitHubStats() {
     try {
         const response = await fetch('https://api.github.com/repos/sisubak/ArchiveX');
         const data = await response.json();
+        displayGitHubStats(data);
+        
     } catch (error) {
-        console.error('Ошибка загрузки GitHub статистики:', error);
+        console.error(error);
+    }
+}
+
+function displayGitHubStats(data) {
+    const githubStats = document.querySelector('.github-stats');
+    if (githubStats) {
+        githubStats.title = `⭐ ${data.stargazers_count} звезд | 🔱 ${data.forks_count} форков | 👁️ ${data.watchers_count} наблюдателей`;
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     loadGitHubStats();
+    setInterval(loadGitHubStats, 300000);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
