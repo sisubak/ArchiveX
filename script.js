@@ -32,8 +32,8 @@ const clientsData = [
         type: "ddnet cheat",
         badge: "ddnet • cheat",
         description: "мощный клиент для ddnet с отличным чит функционалом",
-        image: "https://i.postimg.cc/nrPsS29g/dd-cff.png",
-        download: "https://github.com/gc-cff/cff-updates/releases/download/2.34-19.4-rc2/Loader.zip",
+        image: "https://i.postimg.cc/G2v8F0C2/77CC8FC6-1104-4999-8425-9563957F3F83.png",
+        download: "https://gc-cff.github.io/website/",
         arts: ["https://i.postimg.cc/9FGhQvZy/image.png"]
     },
     {
