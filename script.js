@@ -83,7 +83,8 @@ const clientsData = [
         badge: "ddnet • cheat",
         description: "копирка saiko, но с более улучшенным авойдом. Подойдет для легитов",
         image: "https://i.postimg.cc/fyHYYktn/izobrazenie.png",
-        download: "https://drive.google.com/file/d/1m4_s9OnHBNlhoYIaKygvQutLbbKy3ucS/view?usp=sharing"
+        download: "https://drive.google.com/file/d/1m4_s9OnHBNlhoYIaKygvQutLbbKy3ucS/view?usp=sharing",
+        discord: "https://discord.gg/ECeDVAEVJn"
     },
     {
         title: "sakura client",
@@ -304,7 +305,14 @@ function renderClients() {
                 </a>
             `;
         }
-        
+        let discordButton = '';
+        if (client.discord) {
+            discordButton = `
+                <a href="${client.discord}" class="card-button discord-btn" target="_blank" rel="noopener">
+                    <i class="fab fa-discord"></i> discord
+                </a>
+            `;
+        }
         card.innerHTML = `
             <div class="card-image-wrapper">
                 <img src="${client.image}" alt="${client.title}" class="card-image" loading="lazy">
@@ -318,6 +326,7 @@ function renderClients() {
                         <i class="fas fa-eye"></i> просмотр
                     </button>
                     ${artButton}
+                    ${discordButton}
                     ${downloadButton}
                 </div>
             </div>
