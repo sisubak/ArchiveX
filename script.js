@@ -70,6 +70,14 @@ const clientsData = [
         download: "https://drive.google.com/file/d/1OBtyT__yH9MmuFxgcddySd5B2I3EfTL3/view?usp=sharing"
     },
     {
+        title: "KotClient",
+        type: "ddnet cheat",
+        badge: "ddnet • cheat",
+        description: "нью клиент, все так же похож на saiko, но функционал гораздо лучше",
+        image: "https://i.postimg.cc/0jLGTvM0/izobrazenie.png",
+        telegram: "https://t.me/KotClient"
+    },
+    {
         title: "soup",
         type: "teeworlds cheat",
         badge: "ddnet • cheat",
@@ -281,6 +289,12 @@ function renderClients() {
             downloadButton = `
                 <a href="${client.download}" class="card-button" target="_blank" rel="noopener">
                     <i class="fas fa-download"></i> скачать
+                </a>
+            `;
+        } else if (client.telegram) {
+            downloadButton = `
+                <a href="${client.telegram}" class="card-button telegram-btn" target="_blank" rel="noopener">
+                    <i class="fab fa-telegram"></i> скачать
                 </a>
             `;
         } else if (client.buy) {
