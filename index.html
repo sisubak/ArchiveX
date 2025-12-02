@@ -140,6 +140,22 @@
             width: 150px;
             height: 150px;
         }
+        
+        .card-button.telegram-btn {
+            background: linear-gradient(45deg, #0088cc, #00aced, #229ED9);
+            background-size: 200% 200%;
+            animation: telegramGradient 3s ease infinite;
+        }
+
+        .card-button.telegram-btn:hover {
+            box-shadow: 0 8px 25px rgba(0, 136, 204, 0.6);
+        }
+        
+        @keyframes telegramGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
         .cyber-loader::before,
         .cyber-loader::after {
