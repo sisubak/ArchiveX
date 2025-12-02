@@ -226,6 +226,22 @@
             box-shadow: var(--deep-shadow);
         }
 
+        .card-button.discord-btn {
+            background: linear-gradient(45deg, #5865F2, #7289da, #5865F2);
+            background-size: 200% 200%;
+            animation: discordGradient 3s ease infinite;
+        }
+        
+        .card-button.discord-btn:hover {
+            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.6);
+        }
+        
+        @keyframes discordGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .nav-container {
             max-width: 1400px;
             margin: 0 auto;
