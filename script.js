@@ -288,17 +288,29 @@ function renderClients() {
             `;
         }
         
+        let discordButton = '';
+        if (client.discord) {
+            discordButton = `
+                <a href="${client.discord}" class="card-button discord-btn" target="_blank" rel="noopener">
+                    <i class="fab fa-discord"></i> discord
+                </a>
+            `;
+        }
+        
+        let telegramButton = '';
+        if (client.telegram) {
+            telegramButton = `
+                <a href="${client.telegram}" class="card-button telegram-btn" target="_blank" rel="noopener">
+                    <i class="fab fa-telegram"></i> telegram
+                </a>
+            `;
+        }
+        
         let downloadButton = '';
         if (client.download) {
             downloadButton = `
                 <a href="${client.download}" class="card-button" target="_blank" rel="noopener">
                     <i class="fas fa-download"></i> скачать
-                </a>
-            `;
-        } else if (client.telegram) {
-            downloadButton = `
-                <a href="${client.telegram}" class="card-button telegram-btn" target="_blank" rel="noopener">
-                    <i class="fab fa-telegram"></i> скачать
                 </a>
             `;
         } else if (client.buy) {
@@ -308,14 +320,7 @@ function renderClients() {
                 </a>
             `;
         }
-        let discordButton = '';
-        if (client.discord) {
-            discordButton = `
-                <a href="${client.discord}" class="card-button discord-btn" target="_blank" rel="noopener">
-                    <i class="fab fa-discord"></i> discord
-                </a>
-            `;
-        }
+        
         card.innerHTML = `
             <div class="card-image-wrapper">
                 <img src="${client.image}" alt="${client.title}" class="card-image" loading="lazy">
@@ -330,6 +335,7 @@ function renderClients() {
                     </button>
                     ${artButton}
                     ${discordButton}
+                    ${telegramButton}
                     ${downloadButton}
                 </div>
             </div>
