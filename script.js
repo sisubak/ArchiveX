@@ -75,7 +75,8 @@ const clientsData = [
         badge: "ddnet • cheat",
         description: "нью клиент, все так же похож на saiko, но функционал гораздо лучше",
         image: "https://i.postimg.cc/0jLGTvM0/izobrazenie.png",
-        telegram: "https://t.me/KotClient"
+        telegram: "https://t.me/KotClient",
+        arts: ["https://i.postimg.cc/gkFJqPzF/photo-2025-12-03-12-14-23.jpg"]
     },
     {
         title: "soup",
