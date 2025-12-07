@@ -78,7 +78,7 @@ const clientsData = [
         telegram: "https://t.me/KotClient",
         arts: [
             "https://i.postimg.cc/gkFJqPzF/photo-2025-12-03-12-14-23.jpg",
-            "https://i.postimg.cc/6pRk5Gtr/izobrazenie(1).jpg"
+            "https://i.postimg.cc/6pRk5Gtr/izobrazenie(1).jpg",
             "https://i.postimg.cc/DzPR1kWr/izobrazenie(2).png"
         ]
     },
