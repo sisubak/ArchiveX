@@ -111,6 +111,27 @@
             will-change: transform;
         }
 
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            width: 100%;
+            padding: 0 50px;
+            gap: 60px;
+            z-index: 10;
+        }
+
+        
         .hero-community-image {
             position: absolute;
             right: 5%;
@@ -659,15 +680,257 @@
             }
         }
 
+        @media (max-width: 1100px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 120px 30px 60px;
+                gap: 40px;
+            }
+        
         .hero-content {
-            text-align: center;
-            z-index: 10;
-            padding: 20px;
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 100%;
+        }
+    
+            .hero-visual {
+                max-width: 100%;
+            }
+    
+            .community-scene {
+                width: 300px;
+                height: 300px;
+            }
+
+            .orbit-ring:nth-child(1) { width: 360px; height: 360px; }
+            .orbit-ring:nth-child(2) { width: 420px; height: 420px; }
+            
+            @keyframes dotOrbit1 {
+                from { transform: rotate(0deg) translateX(180px) rotate(0deg); }
+                to { transform: rotate(360deg) translateX(180px) rotate(-360deg); }
+            }
+            
+            @keyframes dotOrbit2 {
+                from { transform: rotate(120deg) translateX(210px) rotate(-120deg); }
+                to { transform: rotate(480deg) translateX(210px) rotate(-480deg); }
+            }
+            
+            @keyframes dotOrbit3 {
+                from { transform: rotate(240deg) translateX(160px) rotate(-240deg); }
+                to { transform: rotate(600deg) translateX(160px) rotate(-600deg); }
+            }
         }
 
+        @media (max-width: 576px) {
+            .hero-container {
+                padding: 100px 20px 40px;
+            }
+            
+            .community-scene {
+                width: 240px;
+                height: 240px;
+            }
+            
+            .orbit-ring { display: none; }
+            .orbit-dot { display: none; }
+        }
+        
+        .community-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: initialFlip 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        .community-card.animated {
+            animation: initialFlip 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards,
+                       idleFloat 8s ease-in-out infinite 2s;
+        }
+
+        .community-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .community-frame {
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 27px;
+            background: linear-gradient(135deg, #ff073a, #ff4d6d, #ff073a, #c70039);
+            background-size: 300% 300%;
+            animation: borderGlow 4s ease infinite;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        .community-card.animated .community-frame {
+            animation: frameAppear 0.5s ease 1.5s forwards, borderGlow 4s ease infinite 2s;
+        }
+        
+        @keyframes frameAppear {
+            to { opacity: 1; }
+        }
+        
+        @keyframes borderGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .community-inner-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 24px;
+            background: radial-gradient(ellipse at 30% 30%, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                transparent 50%);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .community-backdrop {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%) translateZ(-50px);
+            background: radial-gradient(ellipse at center, 
+                rgba(255, 7, 58, 0.4) 0%, 
+                rgba(255, 7, 58, 0.1) 40%, 
+                transparent 70%);
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0;
+            animation: backdropAppear 1s ease 1.8s forwards;
+        }
+        
+        @keyframes backdropAppear {
+            to { opacity: 1; }
+        }
+
+        @keyframes initialFlip {
+            0% {
+                opacity: 0;
+                transform: 
+                    rotateY(-180deg) 
+                    rotateX(40deg) 
+                    rotateZ(-20deg)
+                    scale(0.1)
+                    translateY(100px)
+                    translateZ(-500px);
+                filter: blur(20px);
+            }
+            30% {
+                opacity: 0.5;
+                filter: blur(10px);
+            }
+            60% {
+                transform: 
+                    rotateY(-30deg) 
+                    rotateX(-10deg) 
+                    rotateZ(10deg)
+                    scale(1.1)
+                    translateY(-20px)
+                    translateZ(50px);
+                filter: blur(2px);
+            }
+            80% {
+                transform: 
+                    rotateY(10deg) 
+                    rotateX(5deg) 
+                    rotateZ(-5deg)
+                    scale(0.95)
+                    translateY(10px)
+                    translateZ(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: 
+                    rotateY(-12deg) 
+                    rotateX(-8deg) 
+                    rotateZ(3deg)
+                    scale(1)
+                    translateY(0)
+                    translateZ(0);
+                filter: blur(0);
+            }
+        }
+
+
+        @keyframes idleFloat {
+            0%, 100% {
+                transform: 
+                    rotateY(-12deg) 
+                    rotateX(-8deg) 
+                    rotateZ(3deg)
+                    translateY(0px)
+                    translateZ(0);
+            }
+            25% {
+                transform: 
+                    rotateY(-8deg) 
+                    rotateX(-12deg) 
+                    rotateZ(1deg)
+                    translateY(-15px)
+                    translateZ(20px);
+            }
+            50% {
+                transform: 
+                    rotateY(-15deg) 
+                    rotateX(-5deg) 
+                    rotateZ(5deg)
+                    translateY(-8px)
+                    translateZ(-10px);
+            }
+            75% {
+                transform: 
+                    rotateY(-10deg) 
+                    rotateX(-10deg) 
+                    rotateZ(2deg)
+                    translateY(-20px)
+                    translateZ(15px);
+            }
+        }
+
+        .orbit-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 1px solid rgba(255, 7, 58, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) rotateX(75deg);
+            animation: orbitSpin 20s linear infinite;
+        }
+        
+        .orbit-ring:nth-child(1) {
+            width: 450px;
+            height: 450px;
+            animation-duration: 25s;
+        }
+        
+        .orbit-ring:nth-child(2) {
+            width: 520px;
+            height: 520px;
+            animation-duration: 35s;
+            animation-direction: reverse;
+            border-style: dashed;
+        }
+        
+        @keyframes orbitSpin {
+            from { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
+            to { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
+        }
+        
         .hero-badge {
             display: inline-block;
             background: linear-gradient(45deg, rgba(255, 7, 58, 0.2), rgba(220, 20, 60, 0.2));
@@ -703,6 +966,67 @@
             display: inline-block;
         }
 
+        .orbit-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ff073a;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #ff073a, 0 0 30px #ff073a;
+            top: 50%;
+            left: 50%;
+        }
+        
+        .orbit-dot:nth-child(3) {
+            animation: dotOrbit1 15s linear infinite;
+        }
+        
+        .orbit-dot:nth-child(4) {
+            animation: dotOrbit2 20s linear infinite;
+            width: 6px;
+            height: 6px;
+        }
+        
+        .orbit-dot:nth-child(5) {
+            animation: dotOrbit3 12s linear infinite reverse;
+            width: 5px;
+            height: 5px;
+            background: #ff4d6d;
+        }
+        
+        @keyframes dotOrbit1 {
+            from { transform: rotate(0deg) translateX(225px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(225px) rotate(-360deg); }
+        }
+        
+        @keyframes dotOrbit2 {
+            from { transform: rotate(120deg) translateX(260px) rotate(-120deg); }
+            to { transform: rotate(480deg) translateX(260px) rotate(-480deg); }
+        }
+        
+        @keyframes dotOrbit3 {
+            from { transform: rotate(240deg) translateX(200px) rotate(-240deg); }
+            to { transform: rotate(600deg) translateX(200px) rotate(-600deg); }
+        }
+
+        .community-scene:hover .community-card {
+            animation-play-state: paused;
+        }
+        
+        .community-scene:hover .community-frame {
+            box-shadow: 0 0 40px rgba(255, 7, 58, 0.6);
+        }
+
+        @media (max-width: 1100px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 120px 30px 60px;
+                gap: 40px;
+            }
+
+
+            
         .hero-title-main {
             background: linear-gradient(135deg, 
                 var(--neon-red) 0%, 
@@ -2464,16 +2788,23 @@
                 </a>
             </div>
         </div>
-        <div class="hero-community-image">
-            <div class="community-glow"></div>
-            <div class="community-image-wrapper">
-                <img src="https://i.postimg.cc/28HssqxN/izobrazenie.png" alt="DDNet Community" />
-            </div>
-            <div class="community-particles">
-                <div class="community-particle"></div>
-                <div class="community-particle"></div>
-                <div class="community-particle"></div>
-                <div class="community-particle"></div>
+            <div class="hero-visual">
+                <div class="community-scene">
+                    <!-- Орбитальные кольца -->
+                    <div class="orbit-ring"></div>
+                    <div class="orbit-ring"></div>
+                    <div class="orbit-dot"></div>
+                    <div class="orbit-dot"></div>
+                    <div class="orbit-dot"></div>
+                    
+                    <!-- 3D карточка -->
+                    <div class="community-card" id="communityCard">
+                        <div class="community-backdrop"></div>
+                        <div class="community-frame"></div>
+                        <img src="https://i.postimg.cc/28HssqxN/izobrazenie.png" alt="DDNet Community">
+                        <div class="community-inner-glow"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
