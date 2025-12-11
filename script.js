@@ -511,55 +511,6 @@ if (window.innerWidth > 768 && window.matchMedia('(hover: hover)').matches) {
     }
 }
 
-
-function initHero3DEffect() {
-    const image = document.getElementById('hero3dImage');
-    const container = document.querySelector('.hero-image-container');
-    
-    if (!image || !container || window.innerWidth <= 1024 || 'ontouchstart' in window) return;
-    
-    let isHovering = false;
-    let bounds;
-    
-    container.addEventListener('mouseenter', () => {
-        isHovering = true;
-        bounds = container.getBoundingClientRect();
-        image.style.animationPlayState = 'paused';
-    });
-    
-    container.addEventListener('mouseleave', () => {
-        isHovering = false;
-        image.style.animationPlayState = 'running';
-        image.style.transform = '';
-    });
-    
-    container.addEventListener('mousemove', (e) => {
-        if (!isHovering) return;
-        
-        const mouseX = e.clientX - bounds.left;
-        const mouseY = e.clientY - bounds.top;
-        
-        const centerX = bounds.width / 2;
-        const centerY = bounds.height / 2;
-        
-        const percentX = (mouseX - centerX) / centerX;
-        const percentY = (mouseY - centerY) / centerY;
-        
-        const rotateY = -15 + percentX * 20;
-        const rotateX = 8 - percentY * 15;
-        const rotateZ = -3 + percentX * 5;
-        
-        image.style.transform = `
-            rotateY(${rotateY}deg) 
-            rotateX(${rotateX}deg) 
-            rotateZ(${rotateZ}deg)
-            translateZ(30px)
-            scale(1.02)
-        `;
-    });
-}
-
-
 window.addEventListener('load', () => {
     setTimeout(() => {
         const loader = document.getElementById('loader');
@@ -574,7 +525,6 @@ window.addEventListener('load', () => {
     renderClients();
     createParticles();
     initMatrix();
-    initCommunityImage3D();
 });
 
 const handleScroll = debounce(() => {
