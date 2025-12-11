@@ -70,6 +70,28 @@ const clientsData = [
         download: "https://drive.google.com/file/d/1OBtyT__yH9MmuFxgcddySd5B2I3EfTL3/view?usp=sharing"
     },
     {
+        title: "MRXClient",
+        type: "ddnet cheat",
+        badge: "ddnet • cheat",
+        description: "клиентик для тех кто любит не палиться и новайс мапы",
+        image: "https://i.postimg.cc/ZRPHGG4q/izobrazenie.png",
+        download: "https://drive.google.com/file/d/12gKIkI7XXIhgmpNRsxM9-74HrIx1aT5k/view?usp=sharing"
+    },
+    {
+        title: "Ae86 Client vAe4",
+        type: "teeworlds cheat",
+        badge: "teeworlds • cheat",
+        description: "старая версия Ae86 Client",
+        image: "https://i.postimg.cc/q7yW7Zpq/izobrazenie.png",
+        download: "https://drive.google.com/file/d/1Q-cdqeR3igj8D1Lm40_OLaOuo43a53Ak/view?usp=drive_link",
+        arts: [
+            "https://i.postimg.cc/TYjz6nvn/image.png",
+            "https://i.postimg.cc/kMKZQWGt/image.png",
+            "https://i.postimg.cc/MTRsY8WL/image.png",
+            "https://i.postimg.cc/Qdt0y78g/image.png"
+        ]
+    },
+    {
         title: "KotClient",
         type: "ddnet cheat",
         badge: "ddnet • cheat",
