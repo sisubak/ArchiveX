@@ -504,65 +504,51 @@ if (window.innerWidth > 768 && window.matchMedia('(hover: hover)').matches) {
 }
 
 
-function initCommunityCard() {
-    const card = document.getElementById('communityCard');
-    const scene = document.querySelector('.community-scene');
+function initHero3DEffect() {
+    const image = document.getElementById('hero3dImage');
+    const container = document.querySelector('.hero-image-container');
     
-    if (!card || !scene) return;
+    if (!image || !container || window.innerWidth <= 1024 || 'ontouchstart' in window) return;
     
-    // Добавляем класс для запуска анимаций после загрузки
-    setTimeout(() => {
-        card.classList.add('animated');
-    }, 100);
+    let isHovering = false;
+    let bounds;
     
-    // 3D эффект при движении мыши (только на десктопе)
-    if (window.innerWidth > 1100 && !('ontouchstart' in window)) {
-        let bounds;
-        let isHovering = false;
+    container.addEventListener('mouseenter', () => {
+        isHovering = true;
+        bounds = container.getBoundingClientRect();
+        image.style.animationPlayState = 'paused';
+    });
+    
+    container.addEventListener('mouseleave', () => {
+        isHovering = false;
+        image.style.animationPlayState = 'running';
+        image.style.transform = '';
+    });
+    
+    container.addEventListener('mousemove', (e) => {
+        if (!isHovering) return;
         
-        scene.addEventListener('mouseenter', () => {
-            isHovering = true;
-            bounds = scene.getBoundingClientRect();
-            card.style.transition = 'transform 0.1s ease-out';
-        });
+        const mouseX = e.clientX - bounds.left;
+        const mouseY = e.clientY - bounds.top;
         
-        scene.addEventListener('mouseleave', () => {
-            isHovering = false;
-            card.style.transition = 'transform 0.5s ease-out';
-            // Возврат к базовой позиции
-            card.style.transform = `
-                rotateY(-12deg) 
-                rotateX(-8deg) 
-                rotateZ(3deg)
-                scale(1)
-            `;
-        });
+        const centerX = bounds.width / 2;
+        const centerY = bounds.height / 2;
         
-        scene.addEventListener('mousemove', (e) => {
-            if (!isHovering) return;
-            
-            const mouseX = e.clientX - bounds.left;
-            const mouseY = e.clientY - bounds.top;
-            
-            const centerX = bounds.width / 2;
-            const centerY = bounds.height / 2;
-            
-            const percentX = (mouseX - centerX) / centerX;
-            const percentY = (mouseY - centerY) / centerY;
-            
-            const rotateY = -12 + percentX * 25;
-            const rotateX = -8 - percentY * 20;
-            const rotateZ = 3 + percentX * 5;
-            
-            card.style.transform = `
-                rotateY(${rotateY}deg) 
-                rotateX(${rotateX}deg) 
-                rotateZ(${rotateZ}deg)
-                scale(1.02)
-                translateZ(30px)
-            `;
-        });
-    }
+        const percentX = (mouseX - centerX) / centerX;
+        const percentY = (mouseY - centerY) / centerY;
+        
+        const rotateY = -15 + percentX * 20;
+        const rotateX = 8 - percentY * 15;
+        const rotateZ = -3 + percentX * 5;
+        
+        image.style.transform = `
+            rotateY(${rotateY}deg) 
+            rotateX(${rotateX}deg) 
+            rotateZ(${rotateZ}deg)
+            translateZ(30px)
+            scale(1.02)
+        `;
+    });
 }
 
 
