@@ -139,6 +139,22 @@ const clientsData = [
         arts: ["https://i.postimg.cc/nrp1YjSJ/image.png"]
     },
     {
+        title: "ChillerBot Client",
+        type: "teeworlds",
+        badge: "teeworlds",
+        description: "xz xyeta kakayota<3",
+        image: "https://i.postimg.cc/GtSjQTWk/izobrazenie.png",
+        download: "https://drive.google.com/drive/folders/1BEnkumBWMuws3Qy2k6rD27WSynLsFj-6?usp=sharing"
+    },
+    {
+        title: "PPDDNet Client",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "создатель веба не смог запустить этот клиент...",
+        image: "https://i.postimg.cc/NjVjcGcf/izobrazenie.png",
+        download: "https://drive.google.com/drive/folders/1Vt951yPEZR83FyrLcGw9HJiZDw76t9ws?usp=sharing"
+    },
+    {
         title: "jimjam client",
         type: "teeworlds",
         badge: "teeworlds",
