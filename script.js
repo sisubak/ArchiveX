@@ -503,6 +503,53 @@ if (window.innerWidth > 768 && window.matchMedia('(hover: hover)').matches) {
     }
 }
 
+
+function initCommunityImage3D() {
+    const communityImage = document.querySelector('.hero-community-image');
+    const wrapper = document.querySelector('.community-image-wrapper');
+    
+    if (!communityImage || !wrapper || 'ontouchstart' in window) return;
+    
+    let isHovering = false;
+    let animationPaused = false;
+    
+    communityImage.addEventListener('mouseenter', () => {
+        isHovering = true;
+        animationPaused = true;
+        wrapper.style.animationPlayState = 'paused';
+    });
+    
+    communityImage.addEventListener('mouseleave', () => {
+        isHovering = false;
+        animationPaused = false;
+        wrapper.style.animationPlayState = 'running';
+        wrapper.style.transform = '';
+    });
+    
+    communityImage.addEventListener('mousemove', (e) => {
+        if (!isHovering) return;
+        
+        const rect = communityImage.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateY = -15 + ((x - centerX) / centerX) * 20;
+        const rotateX = -10 + ((centerY - y) / centerY) * 15;
+        const rotateZ = 5 + ((x - centerX) / centerX) * 5;
+        
+        wrapper.style.transform = `
+            rotateY(${rotateY}deg) 
+            rotateX(${rotateX}deg) 
+            rotateZ(${rotateZ}deg) 
+            scale(1.05)
+            translateZ(30px)
+        `;
+    });
+}
+
 window.addEventListener('load', () => {
     setTimeout(() => {
         const loader = document.getElementById('loader');
@@ -517,6 +564,7 @@ window.addEventListener('load', () => {
     renderClients();
     createParticles();
     initMatrix();
+    initCommunityImage3D();
 });
 
 const handleScroll = debounce(() => {
