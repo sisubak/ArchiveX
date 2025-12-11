@@ -92,6 +92,14 @@ const clientsData = [
         ]
     },
     {
+        title: "KoshkaClient",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "легит клиент от создателя KotClient'а",
+        image: "https://i.postimg.cc/6QxWbjw5/izobrazenie.png",
+        download: "https://drive.google.com/file/d/1I7bUk7DFVcEd8MUL6sCXtgvjmx5Fk_3I/view?usp=sharing"
+    },
+    {
         title: "KotClient",
         type: "ddnet cheat",
         badge: "ddnet • cheat",
