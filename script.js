@@ -219,14 +219,6 @@ const clientsData = [
         download: "https://drive.google.com/file/d/100huDXqIS2xmbM1vxAi3YCM_UjxInq8l/view?usp=sharing"
     },
     {
-        title: "s-client",
-        type: "teeworlds",
-        badge: "teeworlds",
-        description: "клиент похожий на tclient, но на teewoorlds",
-        image: "https://i.postimg.cc/d3HdPvpW/S-Client-Ys-E8k9f-B1w.png",
-        download: "https://drive.google.com/file/d/1bUL49r3GTPZInQUZx-fr_WtNmaEanUU4/view?usp=sharing"
-    },
-    {
         title: "sqclient",
         type: "ddnet cheat",
         badge: "ddnet • cheat",
