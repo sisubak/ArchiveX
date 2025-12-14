@@ -33,7 +33,7 @@ const clientsData = [
         badge: "ddnet • cheat",
         description: "мощный клиент для ddnet с отличным чит функционалом",
         image: "https://i.postimg.cc/G2v8F0C2/77CC8FC6-1104-4999-8425-9563957F3F83.png",
-        download: "https://drive.google.com/file/d/1IqiywkybJ6HeqPjO6fIDHnQ11qM-VVQ5/view?usp=sharing",
+        download: "https://drive.google.com/file/d/1LpZuH7zDUTwNF1EQowUntNUQDPUwB4CN/view?usp=drive_link",
         arts: ["https://i.postimg.cc/9FGhQvZy/image.png"]
     },
     {
