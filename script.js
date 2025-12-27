@@ -112,17 +112,28 @@ const clientsData = [
         download: "https://drive.google.com/file/d/1I7bUk7DFVcEd8MUL6sCXtgvjmx5Fk_3I/view?usp=sharing"
     },
     {
-        title: "KotClient",
-        type: "ddnet cheat",
-        badge: "ddnet • cheat",
-        description: "нью клиент, все так же похож на saiko, но функционал гораздо лучше",
-        image: "https://i.postimg.cc/0jLGTvM0/izobrazenie.png",
-        telegram: "https://t.me/KotClient",
-        arts: [
-            "https://i.postimg.cc/gkFJqPzF/photo-2025-12-03-12-14-23.jpg",
-            "https://i.postimg.cc/6pRk5Gtr/izobrazenie%281%29.jpg",
-            "https://i.postimg.cc/DzPR1kWr/izobrazenie%282%29.png"
-        ]
+        title: "Rclient",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "самый ЛУЧШИЙ клиент для легитов, причем без пиздижа. Имеет буквально ВСЕ функции",
+        image: "https://i.postimg.cc/xTcHF6zq/izobrazenie.png",
+        download: "https://drive.google.com/file/d/1WHAjrSdDI3hfBftzrFFzeA0HF6Az2v5C/view?usp=sharing"
+    },
+    {
+        title: "Rclient",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "самый ЛУЧШИЙ клиент для легитов, причем без пиздижа. Имеет буквально ВСЕ функции",
+        image: "https://i.postimg.cc/xTcHF6zq/izobrazenie.png",
+        download: "https://drive.google.com/file/d/1WQ6sPMOkWduOunJ5D0iIkOLusapOmBA4/view?usp=sharing"
+    },
+    {
+        title: "E>client",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "легит клиент, подойдет для тех кому не нравится чем-то Rclient",
+        image: "https://i.postimg.cc/vB4gSB1R/izobrazenie.png",
+        download: "https://drive.google.com/file/d/1WHAjrSdDI3hfBftzrFFzeA0HF6Az2v5C/view?usp=sharing"
     },
     {
         title: "soup",
