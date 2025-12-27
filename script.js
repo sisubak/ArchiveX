@@ -117,14 +117,6 @@ const clientsData = [
         badge: "ddnet",
         description: "самый ЛУЧШИЙ клиент для легитов, причем без пиздижа. Имеет буквально ВСЕ функции",
         image: "https://i.postimg.cc/xTcHF6zq/izobrazenie.png",
-        download: "https://drive.google.com/file/d/1WHAjrSdDI3hfBftzrFFzeA0HF6Az2v5C/view?usp=sharing"
-    },
-    {
-        title: "Rclient",
-        type: "ddnet",
-        badge: "ddnet",
-        description: "самый ЛУЧШИЙ клиент для легитов, причем без пиздижа. Имеет буквально ВСЕ функции",
-        image: "https://i.postimg.cc/xTcHF6zq/izobrazenie.png",
         download: "https://drive.google.com/file/d/1WQ6sPMOkWduOunJ5D0iIkOLusapOmBA4/view?usp=sharing"
     },
     {
