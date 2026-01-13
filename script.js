@@ -26,6 +26,30 @@ const clientsData = [
         ]
     },
     {
+        title: "krx client 1.31 crack",
+        type: "ddnet",
+        badge: "ddnet • cheat • crack",
+        description: "ода, кряк 1.31, как оригинально. Логика та же как у и нового кряка. Пароль 1:",
+        image: "https://i.postimg.cc/FKJHr92F/izobrazenie.png",
+        download: "https://drive.google.com/file/d/1eTfpQ2yhXJVqJgWP5wokEOalHaJWaTEf/view?usp=sharing",
+        arts: [
+            "https://i.postimg.cc/kgb7KB0Q/image.png",
+            "https://i.postimg.cc/VNFQWMD5/image.png"
+        ]
+    },
+    {
+        title: "krx client 1.32 crack NEW",
+        type: "ddnet",
+        badge: "ddnet • cheat • crack",
+        description: "тот самый же кряк, но СОВЕРШЕННО новой версии которая ничего не требует кроме запуска клиента. Пароль 1",
+        image: "https://i.postimg.cc/25c5w7b1/image.png",
+        download: "https://drive.google.com/file/d/1gZcg93sA82rroRTp8M7NNZRKeeV0hsfF/view?usp=sharing",
+        arts: [
+            "https://i.postimg.cc/kgb7KB0Q/image.png",
+            "https://i.postimg.cc/VNFQWMD5/image.png"
+        ]
+    },
+    {
         title: "ae86 client vae6 beta",
         type: "teeworlds cheat",
         badge: "ddnet • cheat",
