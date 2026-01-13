@@ -287,702 +287,267 @@ const clientsData = [
     }
 ];
 
-let currentGallery = [];
-let currentGalleryIndex = 0;
-let securityClickCount = 0;
-let gravityMode = false;
-let matrixAnimationId = null;
-let isMatrixRunning = false;
 
-const debounce = (func, wait) => {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-};
+let currentGallery = []
+let currentGalleryIndex = 0
+
+const debounce = (fn, wait) => {
+    let timeout
+    return (...args) => {
+        clearTimeout(timeout)
+        timeout = setTimeout(() => fn(...args), wait)
+    }
+}
 
 function renderClients() {
-    const grid = document.getElementById('clientsGrid');
-    if (!grid) return;
-    
-    const fragment = document.createDocumentFragment();
-    
-    clientsData.forEach((client, index) => {
-        const card = document.createElement('div');
-        card.className = 'client-card';
-        card.setAttribute('data-type', client.type);
-        card.style.setProperty('--card-index', index);
-        
-        let artButton = '';
+    const grid = document.getElementById('clientsGrid')
+    if (!grid) return
+    const frag = document.createDocumentFragment()
+    clientsData.forEach((client, i) => {
+        const card = document.createElement('div')
+        card.className = 'client-card'
+        card.setAttribute('data-type', client.type)
+        let artBtn = ''
         if (client.arts && client.arts.length > 0) {
-            artButton = `
-                <button class="card-button art-btn" onclick="openArtGallery(${index})">
-                    <i class="fas fa-image"></i> арты
-                </button>
-            `;
+            artBtn = `<button class="card-btn art" onclick="openArtGallery(${i})"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Arts</button>`
         }
-        
-        let discordButton = '';
+        let discordBtn = ''
         if (client.discord) {
-            discordButton = `
-                <a href="${client.discord}" class="card-button discord-btn" target="_blank" rel="noopener">
-                    <i class="fab fa-discord"></i> discord
-                </a>
-            `;
+            discordBtn = `<a href="${client.discord}" class="card-btn outline" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.74 19.74 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.08.08 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.11 13.11 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>Discord</a>`
         }
-        
-        let telegramButton = '';
+        let telegramBtn = ''
         if (client.telegram) {
-            telegramButton = `
-                <a href="${client.telegram}" class="card-button telegram-btn" target="_blank" rel="noopener">
-                    <i class="fab fa-telegram"></i> telegram
-                </a>
-            `;
+            telegramBtn = `<a href="${client.telegram}" class="card-btn outline" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>Telegram</a>`
         }
-        
-        let downloadButton = '';
+        let downloadBtn = ''
         if (client.download) {
-            downloadButton = `
-                <a href="${client.download}" class="card-button" target="_blank" rel="noopener">
-                    <i class="fas fa-download"></i> скачать
-                </a>
-            `;
+            downloadBtn = `<a href="${client.download}" class="card-btn" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</a>`
         } else if (client.buy) {
-            downloadButton = `
-                <a href="${client.buy}" class="card-button buy-btn" target="_blank" rel="noopener">
-                    <i class="fas fa-shopping-cart"></i> купить
-                </a>
-            `;
+            downloadBtn = `<a href="${client.buy}" class="card-btn" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Buy</a>`
         }
-        
-        card.innerHTML = `
-            <div class="card-image-wrapper">
-                <img src="${client.image}" alt="${client.title}" class="card-image" loading="lazy">
-                <span class="card-badge">${client.badge}</span>
-            </div>
-            <div class="card-content">
-                <h3 class="card-title">${client.title}</h3>
-                <p class="card-description">${client.description}</p>
-                <div class="card-actions">
-                    <button class="card-button preview-btn" onclick="openImageModal('${client.image}')">
-                        <i class="fas fa-eye"></i> просмотр
-                    </button>
-                    ${artButton}
-                    ${discordButton}
-                    ${telegramButton}
-                    ${downloadButton}
-                </div>
-            </div>
-        `;
-        
-        fragment.appendChild(card);
-    });
-    
-    grid.innerHTML = '';
-    grid.appendChild(fragment);
-    
-    if (window.innerWidth > 768) {
+        card.innerHTML = `<div class="card-img"><img src="${client.image}" alt="${client.title}" loading="lazy"><span class="card-badge">${client.badge}</span></div><div class="card-body"><h3 class="card-title">${client.title}</h3><p class="card-desc">${client.description}</p><div class="card-buttons"><button class="card-btn outline" onclick="openImageModal('${client.image}')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Preview</button>${artBtn}${discordBtn}${telegramBtn}${downloadBtn}</div></div>`
+        frag.appendChild(card)
+    })
+    grid.innerHTML = ''
+    grid.appendChild(frag)
+}
+
+const flipWords = document.querySelectorAll('.flip-word')
+let flipIndex = 0
+
+function flipWord() {
+    const current = flipWords[flipIndex]
+    current.classList.remove('active')
+    current.classList.add('exit-up')
+    flipIndex = (flipIndex + 1) % flipWords.length
+    const next = flipWords[flipIndex]
+    next.classList.remove('exit-up')
+    next.classList.add('enter-down')
+    requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-            initCardTilt();
-        });
-    }
-}
-
-function initCardTilt() {
-    if ('ontouchstart' in window) return;
-    
-    const cards = document.querySelectorAll('.client-card, .feature-card, .stat-box, .about-text');
-    
-    cards.forEach(card => {
-        const handleMouseMove = (e) => {
-            if (gravityMode) return;
-            
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const rotateX = (y - centerY) / 10;
-            const rotateY = (centerX - x) / 10;
-            
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
-        };
-        
-        const handleMouseLeave = () => {
-            if (gravityMode) return;
-            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-        };
-        
-        card.addEventListener('mousemove', handleMouseMove, { passive: true });
-        card.addEventListener('mouseleave', handleMouseLeave, { passive: true });
-    });
-}
-
-const canvas = document.getElementById('matrixCanvas');
-const ctx = canvas?.getContext('2d');
-
-function initMatrix() {
-    if (!canvas || !ctx) return;
-    
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    
-    const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*";
-    const matrixArray = matrix.split("");
-    const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
-    
-    function drawMatrix() {
-        if (!isMatrixRunning) return;
-        
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#ff073a';
-        ctx.font = fontSize + 'px monospace';
-        
-        for(let i = 0; i < drops.length; i++) {
-            const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-            
-            if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
-        
-        matrixAnimationId = requestAnimationFrame(drawMatrix);
-    }
-    
-    isMatrixRunning = true;
-    drawMatrix();
-}
-
-function createParticles() {
-    const particlesContainer = document.getElementById('heroParticles');
-    if (!particlesContainer) return;
-    
-    const fragment = document.createDocumentFragment();
-    const particleCount = window.innerWidth > 768 ? 25 : 15;
-    
-    for(let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.width = Math.random() * 4 + 2 + 'px';
-        particle.style.height = particle.style.width;
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.animationDuration = Math.random() * 10 + 20 + 's';
-        fragment.appendChild(particle);
-    }
-    
-    particlesContainer.appendChild(fragment);
-}
-
-if (window.innerWidth > 768 && window.matchMedia('(hover: hover)').matches) {
-    const cursor = document.getElementById('customCursor');
-    if (cursor) {
-        let mouseX = 0, mouseY = 0;
-        let cursorX = 0, cursorY = 0;
-        let rafId = null;
-        
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-        
-        function animateCursor() {
-            const dx = mouseX - cursorX;
-            const dy = mouseY - cursorY;
-            
-            cursorX += dx * 0.2;
-            cursorY += dy * 0.2;
-            
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            
-            rafId = requestAnimationFrame(animateCursor);
-        }
-        
-        animateCursor();
-        
-        document.addEventListener('mousedown', () => cursor.classList.add('clicked'));
-        document.addEventListener('mouseup', () => cursor.classList.remove('clicked'));
-    }
-}
-
-window.addEventListener('load', () => {
+            next.classList.remove('enter-down')
+            next.classList.add('active')
+        })
+    })
     setTimeout(() => {
-        const loader = document.getElementById('loader');
-        if (loader) {
-            loader.classList.add('hidden');
-            setTimeout(() => {
-                loader.style.display = 'none';
-            }, 800);
-        }
-    }, 1000);
-    
-    renderClients();
-    createParticles();
-    initMatrix();
-});
-
-const handleScroll = debounce(() => {
-    const scrollY = window.scrollY;
-    const header = document.getElementById('navHeader');
-    const scrollTop = document.getElementById('scrollTop');
-    
-    if (header) {
-        if(scrollY > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    }
-    
-    if (scrollTop) {
-        if(scrollY > 500) {
-            scrollTop.classList.add('visible');
-        } else {
-            scrollTop.classList.remove('visible');
-        }
-    }
-}, 10);
-
-window.addEventListener('scroll', handleScroll, { passive: true });
-
-const menuToggle = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
-
-if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-    });
+        current.classList.remove('exit-up')
+    }, 600)
 }
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const target = document.querySelector(targetId);
-        
-        if(target) {
-            const headerHeight = document.getElementById('navHeader').offsetHeight;
-            const targetPosition = target.offsetTop - headerHeight;
-            
+setInterval(flipWord, 2500)
+
+window.addEventListener('scroll', debounce(() => {
+    const header = document.getElementById('header')
+    const scrollTop = document.getElementById('scrollTop')
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled')
+    } else {
+        header.classList.remove('scrolled')
+    }
+    if (window.scrollY > 500) {
+        scrollTop.classList.add('visible')
+    } else {
+        scrollTop.classList.remove('visible')
+    }
+}, 10))
+
+const menuToggle = document.getElementById('menuToggle')
+const navMenu = document.getElementById('navMenu')
+
+menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active')
+    navMenu.classList.toggle('active')
+})
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault()
+        const target = document.querySelector(a.getAttribute('href'))
+        if (target) {
+            const offset = 80
             window.scrollTo({
-                top: targetPosition,
+                top: target.offsetTop - offset,
                 behavior: 'smooth'
-            });
-            
-            if (navMenu && menuToggle) {
-                navMenu.classList.remove('active');
-                menuToggle.classList.remove('active');
-            }
+            })
+            navMenu.classList.remove('active')
+            menuToggle.classList.remove('active')
         }
-    });
-});
+    })
+})
 
-const scrollTopBtn = document.getElementById('scrollTop');
-if (scrollTopBtn) {
-    scrollTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
+document.getElementById('scrollTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+})
 
-const searchInput = document.getElementById('searchInput');
-if (searchInput) {
-    const handleSearch = debounce((e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        const cards = document.querySelectorAll('.client-card');
-        
-        cards.forEach(card => {
-            const title = card.querySelector('.card-title')?.textContent.toLowerCase() || '';
-            const description = card.querySelector('.card-description')?.textContent.toLowerCase() || '';
-            
-            if(title.includes(searchTerm) || description.includes(searchTerm)) {
-                card.classList.remove('hidden');
+const searchInput = document.getElementById('searchInput')
+searchInput.addEventListener('input', debounce(e => {
+    const term = e.target.value.toLowerCase()
+    document.querySelectorAll('.client-card').forEach(card => {
+        const title = card.querySelector('.card-title').textContent.toLowerCase()
+        const desc = card.querySelector('.card-desc').textContent.toLowerCase()
+        if (title.includes(term) || desc.includes(term)) {
+            card.classList.remove('hidden')
+        } else {
+            card.classList.add('hidden')
+        }
+    })
+}, 300))
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'))
+        btn.classList.add('active')
+        const filter = btn.dataset.filter
+        document.querySelectorAll('.client-card').forEach(card => {
+            if (filter === 'all') {
+                card.classList.remove('hidden')
             } else {
-                card.classList.add('hidden');
-            }
-        });
-    }, 300);
-    
-    searchInput.addEventListener('input', handleSearch);
-}
-
-const filterButtons = document.querySelectorAll('.filter-pill');
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        
-        const filter = button.getAttribute('data-filter');
-        const cards = document.querySelectorAll('.client-card');
-        
-        cards.forEach(card => {
-            if(filter === 'all') {
-                card.classList.remove('hidden');
-            } else {
-                const cardTypes = card.getAttribute('data-type');
-                if(cardTypes && cardTypes.includes(filter)) {
-                    card.classList.remove('hidden');
+                const types = card.dataset.type
+                if (types && types.includes(filter)) {
+                    card.classList.remove('hidden')
                 } else {
-                    card.classList.add('hidden');
+                    card.classList.add('hidden')
                 }
             }
-        });
-    });
-});
+        })
+    })
+})
 
-function openImageModal(imageSrc) {
-    const modal = document.getElementById('imageModal');
-    const modalImage = document.getElementById('modalImage');
-    
-    if (modal && modalImage) {
-        modalImage.src = imageSrc;
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
+function openImageModal(src) {
+    const modal = document.getElementById('imageModal')
+    const img = document.getElementById('modalImage')
+    img.src = src
+    modal.classList.add('active')
+    document.body.style.overflow = 'hidden'
 }
 
 function closeImageModal() {
-    const modal = document.getElementById('imageModal');
-    
-    if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
+    document.getElementById('imageModal').classList.remove('active')
+    document.body.style.overflow = ''
+}
+
+window.openImageModal = openImageModal
+
+document.getElementById('modalClose').addEventListener('click', closeImageModal)
+document.getElementById('imageModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeImageModal()
+})
+
+function openArtGallery(index) {
+    const client = clientsData[index]
+    if (!client.arts || !client.arts.length) return
+    currentGallery = client.arts
+    currentGalleryIndex = 0
+    const gallery = document.getElementById('artGallery')
+    const img = document.getElementById('galleryImage')
+    const dots = document.getElementById('galleryDots')
+    img.src = currentGallery[0]
+    dots.innerHTML = ''
+    currentGallery.forEach((_, i) => {
+        const dot = document.createElement('div')
+        dot.className = 'gallery-dot' + (i === 0 ? ' active' : '')
+        dot.addEventListener('click', () => goToImage(i))
+        dots.appendChild(dot)
+    })
+    updateCounter()
+    gallery.classList.add('active')
+    document.body.style.overflow = 'hidden'
+}
+
+function goToImage(i) {
+    currentGalleryIndex = i
+    document.getElementById('galleryImage').src = currentGallery[i]
+    document.querySelectorAll('.gallery-dot').forEach((d, idx) => d.classList.toggle('active', idx === i))
+    updateCounter()
+}
+
+function updateCounter() {
+    document.getElementById('galleryCount').textContent = `${currentGalleryIndex + 1} / ${currentGallery.length}`
+}
+
+function closeGallery() {
+    document.getElementById('artGallery').classList.remove('active')
+    document.body.style.overflow = ''
+}
+
+window.openArtGallery = openArtGallery
+
+document.getElementById('galleryClose').addEventListener('click', closeGallery)
+document.getElementById('galleryPrev').addEventListener('click', () => goToImage((currentGalleryIndex - 1 + currentGallery.length) % currentGallery.length))
+document.getElementById('galleryNext').addEventListener('click', () => goToImage((currentGalleryIndex + 1) % currentGallery.length))
+document.getElementById('artGallery').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeGallery()
+})
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        closeImageModal()
+        closeGallery()
     }
-}
-
-window.closeImageModal = closeImageModal;
-window.openImageModal = openImageModal;
-
-const imageModal = document.getElementById('imageModal');
-if (imageModal) {
-    imageModal.addEventListener('click', (e) => {
-        if(e.target === e.currentTarget) {
-            closeImageModal();
-        }
-    });
-}
-
-function openArtGallery(clientIndex) {
-    const client = clientsData[clientIndex];
-    if (!client.arts || client.arts.length === 0) return;
-    
-    currentGallery = client.arts;
-    currentGalleryIndex = 0;
-    
-    const gallery = document.getElementById('artGallery');
-    const galleryImage = document.getElementById('galleryImage');
-    const indicators = document.getElementById('galleryIndicators');
-    
-    if (!gallery || !galleryImage || !indicators) return;
-    
-    galleryImage.classList.remove('loaded');
-    
-    const img = new Image();
-    img.onload = function() {
-        galleryImage.src = currentGallery[0];
-        setTimeout(() => {
-            galleryImage.classList.add('loaded');
-        }, 50);
-    };
-    img.src = currentGallery[0];
-    
-    indicators.innerHTML = '';
-    currentGallery.forEach((_, index) => {
-        const indicator = document.createElement('div');
-        indicator.className = 'gallery-indicator' + (index === 0 ? ' active' : '');
-        indicator.addEventListener('click', () => goToGalleryImage(index));
-        indicators.appendChild(indicator);
-    });
-    
-    updateGalleryCounter();
-    gallery.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-function goToGalleryImage(index) {
-    currentGalleryIndex = index;
-    const galleryImage = document.getElementById('galleryImage');
-    
-    if (!galleryImage) return;
-    
-    galleryImage.classList.remove('loaded');
-    
-    const img = new Image();
-    img.onload = function() {
-        galleryImage.src = currentGallery[currentGalleryIndex];
-        setTimeout(() => {
-            galleryImage.classList.add('loaded');
-        }, 50);
-    };
-    img.src = currentGallery[currentGalleryIndex];
-    
-    document.querySelectorAll('.gallery-indicator').forEach((ind, i) => {
-        ind.classList.toggle('active', i === currentGalleryIndex);
-    });
-    
-    updateGalleryCounter();
-}
-
-function nextGalleryImage() {
-    currentGalleryIndex = (currentGalleryIndex + 1) % currentGallery.length;
-    goToGalleryImage(currentGalleryIndex);
-}
-
-function prevGalleryImage() {
-    currentGalleryIndex = (currentGalleryIndex - 1 + currentGallery.length) % currentGallery.length;
-    goToGalleryImage(currentGalleryIndex);
-}
-
-function updateGalleryCounter() {
-    const counter = document.getElementById('galleryCounter');
-    if (counter) {
-        counter.textContent = `${currentGalleryIndex + 1} / ${currentGallery.length}`;
+    if (document.getElementById('artGallery').classList.contains('active')) {
+        if (e.key === 'ArrowRight') goToImage((currentGalleryIndex + 1) % currentGallery.length)
+        if (e.key === 'ArrowLeft') goToImage((currentGalleryIndex - 1 + currentGallery.length) % currentGallery.length)
     }
-}
+})
 
-function closeArtGallery() {
-    const gallery = document.getElementById('artGallery');
-    if (gallery) {
-        gallery.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-}
+const statValues = document.querySelectorAll('.stat-value')
+let animated = false
 
-window.openArtGallery = openArtGallery;
-
-const galleryNext = document.getElementById('galleryNext');
-const galleryPrev = document.getElementById('galleryPrev');
-const galleryClose = document.getElementById('galleryClose');
-const artGallery = document.getElementById('artGallery');
-
-if (galleryNext) galleryNext.addEventListener('click', nextGalleryImage);
-if (galleryPrev) galleryPrev.addEventListener('click', prevGalleryImage);
-if (galleryClose) galleryClose.addEventListener('click', closeArtGallery);
-
-if (artGallery) {
-    artGallery.addEventListener('click', (e) => {
-        if(e.target === e.currentTarget) {
-            closeArtGallery();
-        }
-    });
-}
-
-document.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') {
-        closeImageModal();
-        closeArtGallery();
-    }
-    if(document.getElementById('artGallery')?.classList.contains('active')) {
-        if(e.key === 'ArrowRight') nextGalleryImage();
-        if(e.key === 'ArrowLeft') prevGalleryImage();
-    }
-});
-
-const counters = document.querySelectorAll('.stat-number');
-let hasAnimated = false;
-
-function animateCounters() {
-    counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-count'));
-        const duration = 2000;
-        const increment = target / (duration / 16);
-        let current = 0;
-        
-        const updateCounter = () => {
-            current += increment;
-            if(current < target) {
-                counter.textContent = Math.floor(current);
-                requestAnimationFrame(updateCounter);
-            } else {
-                counter.textContent = target;
-            }
-        };
-        
-        updateCounter();
-    });
-}
-
-const statsSection = document.getElementById('stats');
-if (statsSection) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting && !hasAnimated) {
-                animateCounters();
-                hasAnimated = true;
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
-    
-    observer.observe(statsSection);
-}
-
-const securityIcon = document.getElementById('securityIcon');
-if (securityIcon) {
-    securityIcon.addEventListener('click', () => {
-        securityClickCount++;
-        
-        if (securityClickCount === 3) {
-            activateGravityMode();
-            securityClickCount = 0;
-        }
-        
-        setTimeout(() => {
-            securityClickCount = 0;
-        }, 2000);
-    });
-}
-
-function activateGravityMode() {
-    if (gravityMode || !window.Matter) return;
-    gravityMode = true;
-    
-    document.body.classList.add('gravity-mode');
-    
-    const Engine = Matter.Engine;
-    const Render = Matter.Render;
-    const World = Matter.World;
-    const Bodies = Matter.Bodies;
-    const Mouse = Matter.Mouse;
-    const MouseConstraint = Matter.MouseConstraint;
-    
-    const physicsCanvas = document.getElementById('physicsCanvas');
-    if (!physicsCanvas) return;
-    
-    physicsCanvas.classList.add('active');
-    
-    const engine = Engine.create();
-    const world = engine.world;
-    
-    const render = Render.create({
-        canvas: physicsCanvas,
-        engine: engine,
-        options: {
-            width: window.innerWidth,
-            height: window.innerHeight,
-            wireframes: false,
-            background: 'transparent'
-        }
-    });
-    
-    const ground = Bodies.rectangle(
-        window.innerWidth / 2, 
-        window.innerHeight + 50, 
-        window.innerWidth * 2, 
-        100, 
-        { isStatic: true }
-    );
-    
-    const leftWall = Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight * 2, { isStatic: true });
-    const rightWall = Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight * 2, { isStatic: true });
-    
-    World.add(world, [ground, leftWall, rightWall]);
-    
-    const elements = document.querySelectorAll('.client-card, .feature-card, .stat-box, .about-text, .logo-text, .nav-link, .section-title');
-    
-    elements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        
-        const body = Bodies.rectangle(
-            rect.left + rect.width / 2,
-            rect.top + rect.height / 2,
-            rect.width,
-            rect.height,
-            {
-                restitution: 0.6,
-                friction: 0.05,
-                render: {
-                    fillStyle: 'rgba(255, 7, 58, 0.2)',
-                    strokeStyle: '#ff073a',
-                    lineWidth: 2
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !animated) {
+            animated = true
+            statValues.forEach(el => {
+                const target = parseInt(el.dataset.count)
+                let current = 0
+                const duration = 2000
+                const increment = target / (duration / 16)
+                const update = () => {
+                    current += increment
+                    if (current < target) {
+                        el.textContent = Math.floor(current)
+                        requestAnimationFrame(update)
+                    } else {
+                        el.textContent = target
+                    }
                 }
-            }
-        );
-        
-        World.add(world, body);
-        
-        el.style.position = 'fixed';
-        el.style.zIndex = '999999';
-        
-        Matter.Events.on(engine, 'afterUpdate', () => {
-            el.style.top = `${body.position.y - rect.height / 2}px`;
-            el.style.left = `${body.position.x - rect.width / 2}px`;
-            el.style.transform = `rotate(${body.angle}rad)`;
-        });
-    });
-    
-    const mouse = Mouse.create(render.canvas);
-    const mouseConstraint = MouseConstraint.create(engine, {
-        mouse: mouse,
-        constraint: {
-            stiffness: 0.2,
-            render: {
-                visible: false
-            }
+                update()
+            })
+            observer.unobserve(entry.target)
         }
-    });
-    
-    World.add(world, mouseConstraint);
-    render.mouse = mouse;
-    
-    Engine.run(engine);
-    Render.run(render);
-}
+    })
+}, { threshold: 0.3 })
 
-const resizeHandler = debounce(() => {
-    if (canvas && ctx) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        
-        if (isMatrixRunning) {
-            cancelAnimationFrame(matrixAnimationId);
-            initMatrix();
-        }
-    }
-}, 250);
+observer.observe(document.getElementById('stats'))
 
-window.addEventListener('resize', resizeHandler, { passive: true });
+document.querySelectorAll('.feature-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect()
+        const x = e.clientX - rect.left
+        const y = e.clientY - rect.top
+        card.style.setProperty('--mouse-x', `${x}px`)
+        card.style.setProperty('--mouse-y', `${y}px`)
+    })
+})
 
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        isMatrixRunning = false;
-        if (matrixAnimationId) {
-            cancelAnimationFrame(matrixAnimationId);
-        }
-    } else {
-        if (!isMatrixRunning) {
-            initMatrix();
-        }
-    }
-});
-
-if ('IntersectionObserver' in window) {
-    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.removeAttribute('loading');
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-    
-    lazyImages.forEach(img => imageObserver.observe(img));
-}
+window.addEventListener('load', renderClients)
