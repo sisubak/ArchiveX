@@ -311,7 +311,6 @@ const clientsData = [
     }
 ];
 
-
 let current_gallery = []
 let current_gallery_index = 0
 let flip_index = 0
@@ -389,6 +388,803 @@ function render_clients() {
     
     grid.innerHTML = ''
     grid.appendChild(frag)
+}
+
+function init_globe() {
+    const canvas = document.getElementById('globeCanvas')
+    if (!canvas || typeof THREE === 'undefined') return
+    
+    const container = document.getElementById('globeContainer')
+    const width = container.offsetWidth
+    const height = container.offsetHeight
+    
+    const scene = new THREE.Scene()
+    
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000)
+    camera.position.z = 300
+    
+    const renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: true,
+        alpha: true
+    })
+    renderer.setSize(width, height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    
+    const ambientLight = new THREE.AmbientLight(0x404040, 0.5)
+    scene.add(ambientLight)
+    
+    const pointLight = new THREE.PointLight(0xdc2626, 1, 500)
+    pointLight.position.set(100, 100, 150)
+    scene.add(pointLight)
+    
+    const pointLight2 = new THREE.PointLight(0x3b82f6, 0.5, 500)
+    pointLight2.position.set(-100, -100, 150)
+    scene.add(pointLight2)
+    
+    const globeGeometry = new THREE.SphereGeometry(100, 64, 64)
+    const globeMaterial = new THREE.MeshPhongMaterial({
+        color: 0x1a1a2e,
+        emissive: 0x0a0a15,
+        emissiveIntensity: 0.2,
+        shininess: 10,
+        transparent: true,
+        opacity: 0.95
+    })
+    const globe = new THREE.Mesh(globeGeometry, globeMaterial)
+    scene.add(globe)
+    
+    const atmosphereGeometry = new THREE.SphereGeometry(102, 64, 64)
+    const atmosphereMaterial = new THREE.ShaderMaterial({
+        vertexShader: `
+            varying vec3 vNormal;
+            void main() {
+                vNormal = normalize(normalMatrix * normal);
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+            }
+        `,
+        fragmentShader: `
+            varying vec3 vNormal;
+            void main() {
+                float intensity = pow(0.7 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 2.0);
+                gl_FragColor = vec4(0.86, 0.15, 0.15, 1.0) * intensity;
+            }
+        `,
+        blending: THREE.AdditiveBlending,
+        side: THREE.BackSide,
+        transparent: true
+    })
+    const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial)
+    scene.add(atmosphere)
+    
+    const gridMaterial = new THREE.LineBasicMaterial({ 
+        color: 0x7f1d1d, 
+        transparent: true, 
+        opacity: 0.3 
+    })
+    
+    for (let i = 0; i < 12; i++) {
+        const curve = new THREE.EllipseCurve(0, 0, 100, 100, 0, 2 * Math.PI, false, 0)
+        const points = curve.getPoints(64)
+        const geometry = new THREE.BufferGeometry().setFromPoints(points)
+        const meridian = new THREE.Line(geometry, gridMaterial)
+        meridian.rotation.y = (i / 12) * Math.PI
+        globe.add(meridian)
+    }
+    
+    for (let i = 1; i < 6; i++) {
+        const radius = 100 * Math.cos((i / 6) * Math.PI / 2)
+        const y = 100 * Math.sin((i / 6) * Math.PI / 2)
+        const curve = new THREE.EllipseCurve(0, 0, radius, radius, 0, 2 * Math.PI, false, 0)
+        const points = curve.getPoints(64)
+        const geometry = new THREE.BufferGeometry().setFromPoints(points)
+        
+        const parallel1 = new THREE.Line(geometry, gridMaterial)
+        parallel1.position.y = y
+        parallel1.rotation.x = Math.PI / 2
+        globe.add(parallel1)
+        
+        const parallel2 = new THREE.Line(geometry, gridMaterial)
+        parallel2.position.y = -y
+        parallel2.rotation.x = Math.PI / 2
+        globe.add(parallel2)
+    }
+    
+    function latLngToVector3(lat, lng, radius) {
+        const phi = (90 - lat) * (Math.PI / 180)
+        const theta = (lng + 180) * (Math.PI / 180)
+        return new THREE.Vector3(
+            -radius * Math.sin(phi) * Math.cos(theta),
+            radius * Math.cos(phi),
+            radius * Math.sin(phi) * Math.sin(theta)
+        )
+    }
+    
+    const cities = [
+        { lat: 40.7128, lng: -74.006, name: 'New York' },
+        { lat: 51.5074, lng: -0.1278, name: 'London' },
+        { lat: 35.6762, lng: 139.6503, name: 'Tokyo' },
+        { lat: 22.3193, lng: 114.1694, name: 'Hong Kong' },
+        { lat: -33.8688, lng: 151.2093, name: 'Sydney' },
+        { lat: 55.7558, lng: 37.6173, name: 'Moscow' },
+        { lat: 25.2048, lng: 55.2708, name: 'Dubai' },
+        { lat: -23.5505, lng: -46.6333, name: 'Sao Paulo' },
+        { lat: 1.3521, lng: 103.8198, name: 'Singapore' },
+        { lat: 48.8566, lng: 2.3522, name: 'Paris' }
+    ]
+    
+    const pointsGroup = new THREE.Group()
+    const pointGeometry = new THREE.SphereGeometry(2, 16, 16)
+    const pointMaterial = new THREE.MeshBasicMaterial({ color: 0xef4444 })
+    
+    cities.forEach(function(city) {
+        const pos = latLngToVector3(city.lat, city.lng, 101)
+        const point = new THREE.Mesh(pointGeometry, pointMaterial)
+        point.position.copy(pos)
+        pointsGroup.add(point)
+        
+        const ringGeometry = new THREE.RingGeometry(3, 4, 32)
+        const ringMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0xef4444, 
+            transparent: true, 
+            opacity: 0.5,
+            side: THREE.DoubleSide
+        })
+        const ring = new THREE.Mesh(ringGeometry, ringMaterial)
+        ring.position.copy(pos)
+        ring.lookAt(0, 0, 0)
+        pointsGroup.add(ring)
+    })
+    globe.add(pointsGroup)
+    
+    const arcConnections = [
+        [0, 1], [1, 9], [9, 5], [5, 6], [6, 8], [8, 3], [3, 2], [2, 4],
+        [0, 7], [1, 6], [2, 8], [4, 8], [5, 3]
+    ]
+    
+    const colors = [0xdc2626, 0xef4444, 0xf87171, 0x3b82f6, 0x06b6d4]
+    const arcsGroup = new THREE.Group()
+    
+    arcConnections.forEach(function(conn, index) {
+        const start = latLngToVector3(cities[conn[0]].lat, cities[conn[0]].lng, 100)
+        const end = latLngToVector3(cities[conn[1]].lat, cities[conn[1]].lng, 100)
+        
+        const mid = new THREE.Vector3().addVectors(start, end).multiplyScalar(0.5)
+        const distance = start.distanceTo(end)
+        mid.normalize().multiplyScalar(100 + distance * 0.4)
+        
+        const curve = new THREE.QuadraticBezierCurve3(start, mid, end)
+        const points = curve.getPoints(50)
+        const geometry = new THREE.BufferGeometry().setFromPoints(points)
+        
+        const color = colors[index % colors.length]
+        const material = new THREE.LineBasicMaterial({ 
+            color: color,
+            transparent: true,
+            opacity: 0.6
+        })
+        
+        const arc = new THREE.Line(geometry, material)
+        arc.userData = { 
+            progress: Math.random(),
+            speed: 0.002 + Math.random() * 0.003,
+            points: points,
+            color: color
+        }
+        arcsGroup.add(arc)
+    })
+    globe.add(arcsGroup)
+    
+    const particlesGroup = new THREE.Group()
+    const particleGeometry = new THREE.SphereGeometry(1.5, 8, 8)
+    
+    arcsGroup.children.forEach(function(arc) {
+        const particleMaterial = new THREE.MeshBasicMaterial({ 
+            color: arc.userData.color,
+            transparent: true
+        })
+        const particle = new THREE.Mesh(particleGeometry, particleMaterial)
+        particle.userData = arc.userData
+        particlesGroup.add(particle)
+    })
+    globe.add(particlesGroup)
+    
+    function animate() {
+        requestAnimationFrame(animate)
+        
+        globe.rotation.y += 0.002
+        
+        particlesGroup.children.forEach(function(particle) {
+            particle.userData.progress += particle.userData.speed
+            if (particle.userData.progress > 1) particle.userData.progress = 0
+            
+            const points = particle.userData.points
+            const index = Math.floor(particle.userData.progress * (points.length - 1))
+            if (points[index]) {
+                particle.position.copy(points[index])
+            }
+            
+            const fade = Math.sin(particle.userData.progress * Math.PI)
+            particle.material.opacity = fade
+        })
+        
+        renderer.render(scene, camera)
+    }
+    
+    animate()
+    
+    function onResize() {
+        const w = container.offsetWidth
+        const h = container.offsetHeight
+        camera.aspect = w / h
+        camera.updateProjectionMatrix()
+        renderer.setSize(w, h)
+    }
+    
+    window.addEventListener('resize', onResize)
+}
+
+function create_encrypted_text(element, options) {
+    if (!element) return
+    
+    const text = element.textContent
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*'
+    const reveal_delay = options && options.delay ? options.delay : 50
+    
+    element.innerHTML = ''
+    element.classList.add('encrypted-text')
+    
+    const spans = []
+    for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span')
+        span.className = 'encrypted-char encrypted'
+        span.textContent = text[i] === ' ' ? ' ' : chars[Math.floor(Math.random() * chars.length)]
+        span.dataset.original = text[i]
+        element.appendChild(span)
+        spans.push(span)
+    }
+    
+    let revealed = false
+    
+    function reveal() {
+        if (revealed) return
+        revealed = true
+        
+        spans.forEach(function(span, i) {
+            let iterations = 0
+            const max_iterations = 3 + Math.floor(Math.random() * 5)
+            
+            const interval = setInterval(function() {
+                if (span.dataset.original === ' ') {
+                    span.textContent = ' '
+                    clearInterval(interval)
+                    return
+                }
+                
+                if (iterations >= max_iterations) {
+                    span.textContent = span.dataset.original
+                    span.classList.remove('encrypted')
+                    span.classList.add('revealed')
+                    clearInterval(interval)
+                } else {
+                    span.textContent = chars[Math.floor(Math.random() * chars.length)]
+                    iterations++
+                }
+            }, reveal_delay)
+        })
+    }
+    
+    return { reveal: reveal }
+}
+
+function create_sparkles_text(element) {
+    if (!element) return
+    
+    element.classList.add('sparkles-text')
+    
+    const container = document.createElement('div')
+    container.className = 'sparkles-container'
+    element.appendChild(container)
+    
+    let active = false
+    let interval_id = null
+    
+    function create_sparkle() {
+        const sparkle = document.createElement('div')
+        sparkle.className = 'sparkle'
+        sparkle.style.left = Math.random() * 100 + '%'
+        sparkle.style.top = Math.random() * 100 + '%'
+        sparkle.style.animationDuration = (1 + Math.random() * 0.5) + 's'
+        
+        const size = 8 + Math.random() * 8
+        sparkle.style.width = size + 'px'
+        sparkle.style.height = size + 'px'
+        
+        sparkle.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/></svg>'
+        
+        container.appendChild(sparkle)
+        
+        setTimeout(function() {
+            sparkle.remove()
+        }, 1500)
+    }
+    
+    function start() {
+        if (active) return
+        active = true
+        
+        for (let i = 0; i < 3; i++) {
+            setTimeout(create_sparkle, i * 200)
+        }
+        
+        interval_id = setInterval(create_sparkle, 300)
+    }
+    
+    function stop() {
+        active = false
+        if (interval_id) {
+            clearInterval(interval_id)
+            interval_id = null
+        }
+    }
+    
+    return { start: start, stop: stop }
+}
+
+function create_word_reveal(element) {
+    if (!element) return
+    
+    const text = element.textContent
+    const words = text.split(' ')
+    
+    element.innerHTML = ''
+    element.classList.add('word-reveal')
+    
+    words.forEach(function(word, i) {
+        const span = document.createElement('span')
+        span.className = 'word'
+        span.textContent = word
+        span.style.transitionDelay = (i * 0.1) + 's'
+        element.appendChild(span)
+    })
+}
+
+function create_char_reveal(element) {
+    if (!element) return
+    
+    const text = element.textContent
+    
+    element.innerHTML = ''
+    element.classList.add('char-reveal')
+    
+    for (let i = 0; i < text.length; i++) {
+        const span = document.createElement('span')
+        span.className = 'char'
+        span.textContent = text[i] === ' ' ? '\u00A0' : text[i]
+        span.style.transitionDelay = (i * 0.03) + 's'
+        element.appendChild(span)
+    }
+}
+
+function init_text_effects() {
+    var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*<>[]{}|;:,.?/~`'
+    var effects_data = []
+    
+    document.querySelectorAll('[data-encrypted]').forEach(function(el) {
+        var original_text = el.textContent
+        el.innerHTML = ''
+        el.classList.add('encrypted-text')
+        
+        var char_elements = []
+        for (var i = 0; i < original_text.length; i++) {
+            var span = document.createElement('span')
+            span.className = 'encrypted-char' + (original_text[i] === ' ' ? ' space' : '')
+            span.dataset.char = original_text[i]
+            
+            if (original_text[i] === ' ') {
+                span.innerHTML = '&nbsp;'
+            } else {
+                span.textContent = chars[Math.floor(Math.random() * chars.length)]
+                span.classList.add('encrypted')
+            }
+            
+            el.appendChild(span)
+            char_elements.push(span)
+        }
+        
+        effects_data.push({
+            type: 'encrypted',
+            el: el,
+            chars: char_elements,
+            original: original_text,
+            revealed: false
+        })
+    })
+    
+    document.querySelectorAll('[data-sparkles]').forEach(function(el) {
+        el.classList.add('sparkles-text')
+        
+        var container = document.createElement('div')
+        container.className = 'sparkles-container'
+        el.appendChild(container)
+        
+        effects_data.push({
+            type: 'sparkles',
+            el: el,
+            container: container,
+            active: false,
+            interval: null
+        })
+    })
+    
+    document.querySelectorAll('[data-word-reveal]').forEach(function(el) {
+        var text = el.textContent
+        var words = text.split(/\s+/)
+        
+        el.innerHTML = ''
+        
+        var wrapper = document.createElement('span')
+        wrapper.className = 'word-reveal-wrapper'
+        
+        words.forEach(function(word, i) {
+            if (word.trim() === '') return
+            
+            var span = document.createElement('span')
+            span.className = 'word-reveal-word'
+            span.textContent = word
+            span.style.transitionDelay = (i * 0.08) + 's'
+            wrapper.appendChild(span)
+        })
+        
+        el.appendChild(wrapper)
+        
+        effects_data.push({
+            type: 'word-reveal',
+            el: el,
+            wrapper: wrapper,
+            revealed: false
+        })
+    })
+    
+    document.querySelectorAll('[data-char-reveal]').forEach(function(el) {
+        var text = el.textContent
+        
+        el.innerHTML = ''
+        
+        var wrapper = document.createElement('span')
+        wrapper.className = 'char-reveal-wrapper'
+        
+        for (var i = 0; i < text.length; i++) {
+            var span = document.createElement('span')
+            span.className = 'char-reveal-char'
+            span.textContent = text[i] === ' ' ? '\u00A0' : text[i]
+            span.style.transitionDelay = (i * 0.04) + 's'
+            wrapper.appendChild(span)
+        }
+        
+        el.appendChild(wrapper)
+        
+        effects_data.push({
+            type: 'char-reveal',
+            el: el,
+            wrapper: wrapper,
+            revealed: false
+        })
+    })
+    
+    document.querySelectorAll('[data-glitch]').forEach(function(el) {
+        var text = el.textContent
+        
+        el.innerHTML = ''
+        
+        var wrapper = document.createElement('span')
+        wrapper.className = 'glitch-wrapper'
+        wrapper.textContent = text
+        wrapper.dataset.text = text
+        
+        el.appendChild(wrapper)
+        
+        effects_data.push({
+            type: 'glitch',
+            el: el,
+            wrapper: wrapper,
+            revealed: false
+        })
+    })
+    
+    document.querySelectorAll('[data-highlight]').forEach(function(el) {
+        var type = el.dataset.highlight || 'box'
+        var text = el.textContent
+        
+        el.innerHTML = ''
+        el.classList.add('highlight-' + type)
+        
+        if (type === 'reveal') {
+            el.classList.remove('highlight-reveal')
+            el.classList.add('text-reveal-highlight')
+            
+            var bg = document.createElement('span')
+            bg.className = 'text-bg'
+            
+            var content = document.createElement('span')
+            content.className = 'text-content'
+            content.textContent = text
+            
+            el.appendChild(bg)
+            el.appendChild(content)
+        } else if (type === 'wrapper') {
+            var bg = document.createElement('span')
+            bg.className = 'highlight-bg'
+            el.appendChild(bg)
+            
+            var textSpan = document.createElement('span')
+            textSpan.textContent = text
+            el.insertBefore(textSpan, bg)
+        } else {
+            el.textContent = text
+        }
+        
+        effects_data.push({
+            type: 'highlight',
+            el: el,
+            highlight_type: type,
+            activated: false
+        })
+    })
+    
+    function reveal_encrypted(data) {
+        if (data.revealed) return
+        data.revealed = true
+        
+        data.chars.forEach(function(span, index) {
+            if (span.dataset.char === ' ') return
+            
+            var iterations = 0
+            var max_iterations = 5 + Math.floor(Math.random() * 8)
+            var delay = index * 30
+            
+            setTimeout(function() {
+                var interval = setInterval(function() {
+                    if (iterations >= max_iterations) {
+                        span.textContent = span.dataset.char
+                        span.classList.remove('encrypted')
+                        span.classList.add('revealed')
+                        clearInterval(interval)
+                    } else {
+                        span.textContent = chars[Math.floor(Math.random() * chars.length)]
+                        iterations++
+                    }
+                }, 50)
+            }, delay)
+        })
+    }
+    
+    function start_sparkles(data) {
+        if (data.active) return
+        data.active = true
+        
+        function create_sparkle() {
+            var sparkle = document.createElement('div')
+            sparkle.className = 'sparkle'
+            
+            var size = 8 + Math.random() * 12
+            sparkle.style.width = size + 'px'
+            sparkle.style.height = size + 'px'
+            sparkle.style.left = (Math.random() * 100) + '%'
+            sparkle.style.top = (Math.random() * 100) + '%'
+            sparkle.style.animation = 'sparkle-pop ' + (1 + Math.random() * 0.5) + 's ease-in-out forwards'
+            
+            sparkle.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z"/></svg>'
+            
+            data.container.appendChild(sparkle)
+            
+            setTimeout(function() {
+                if (sparkle.parentNode) {
+                    sparkle.remove()
+                }
+            }, 1500)
+        }
+        
+        create_sparkle()
+        create_sparkle()
+        create_sparkle()
+        
+        data.interval = setInterval(function() {
+            create_sparkle()
+        }, 400)
+    }
+    
+    function reveal_words(data) {
+        if (data.revealed) return
+        data.revealed = true
+        data.wrapper.classList.add('visible')
+    }
+    
+    function reveal_chars(data) {
+        if (data.revealed) return
+        data.revealed = true
+        data.wrapper.classList.add('visible')
+    }
+    
+    function trigger_glitch(data) {
+        if (data.revealed) return
+        data.revealed = true
+        data.wrapper.classList.add('active')
+        
+        setTimeout(function() {
+            data.wrapper.classList.remove('active')
+        }, 500)
+    }
+    
+    function activate_highlight(data) {
+        if (data.activated) return
+        data.activated = true
+        data.el.classList.add('active')
+    }
+    
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (!entry.isIntersecting) return
+            
+            var target = entry.target
+            
+            if (target.classList.contains('reveal-text')) {
+                target.classList.add('visible')
+            }
+            
+            if (target.classList.contains('hero-highlight-title')) {
+                target.classList.add('animate')
+            }
+            
+            effects_data.forEach(function(data) {
+                if (data.el === target || data.el.contains(target) || target.contains(data.el)) {
+                    switch (data.type) {
+                        case 'encrypted':
+                            reveal_encrypted(data)
+                            break
+                        case 'sparkles':
+                            start_sparkles(data)
+                            break
+                        case 'word-reveal':
+                            reveal_words(data)
+                            break
+                        case 'char-reveal':
+                            reveal_chars(data)
+                            break
+                        case 'glitch':
+                            trigger_glitch(data)
+                            break
+                        case 'highlight':
+                            activate_highlight(data)
+                            break
+                    }
+                }
+            })
+            
+            observer.unobserve(target)
+        })
+    }, { threshold: 0.3, rootMargin: '0px 0px -50px 0px' })
+    
+    document.querySelectorAll('.reveal-text, .hero-highlight-title').forEach(function(el) {
+        observer.observe(el)
+    })
+    
+    effects_data.forEach(function(data) {
+        observer.observe(data.el)
+    })
+    
+    document.querySelectorAll('.hero-content .reveal-text, .hero-content [data-sparkles]').forEach(function(el) {
+        el.classList.add('visible')
+        
+        effects_data.forEach(function(data) {
+            if (data.el === el) {
+                if (data.type === 'sparkles') {
+                    setTimeout(function() { start_sparkles(data) }, 500)
+                }
+            }
+        })
+    })
+}
+
+function init_lamp() {
+    const container = document.getElementById('lampContainer')
+    if (!container) return
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                const elements = container.querySelectorAll('.lamp-cone, .lamp-cone-inner, .lamp-glow-spot, .lamp-horizon, .lamp-glow-floor, .lamp-content')
+                elements.forEach(function(el, i) {
+                    setTimeout(function() {
+                        el.classList.add('animate')
+                    }, i * 100)
+                })
+                observer.unobserve(entry.target)
+            }
+        })
+    }, { threshold: 0.2 })
+    
+    observer.observe(container)
+}
+
+function init_hero_highlight() {
+    var section = document.querySelector('.hero-highlight-section')
+    if (!section) return
+    
+    var title = section.querySelector('.hero-highlight-title')
+    if (!title) return
+    
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                setTimeout(function() {
+                    title.classList.add('animate')
+                    
+                    var highlights = title.querySelectorAll('[data-highlight]')
+                    highlights.forEach(function(el, i) {
+                        setTimeout(function() {
+                            el.classList.add('active')
+                        }, 300 + i * 200)
+                    })
+                }, 200)
+                observer.unobserve(entry.target)
+            }
+        })
+    }, { threshold: 0.3 })
+    
+    observer.observe(section)
+}
+
+function init_sidebar() {
+    const sidebar = document.getElementById('sidebar')
+    if (!sidebar) return
+    
+    document.body.classList.add('has-sidebar')
+    
+    const links = document.querySelectorAll('.sidebar-link')
+    const sections = document.querySelectorAll('section[id], .lamp-container')
+    
+    function update_active_link() {
+        let current = 'home'
+        const scroll_pos = window.scrollY + 150
+        
+        sections.forEach(function(section) {
+            const top = section.offsetTop
+            const height = section.offsetHeight
+            const id = section.getAttribute('id')
+            
+            if (id && scroll_pos >= top && scroll_pos < top + height) {
+                current = id
+            }
+        })
+        
+        links.forEach(function(link) {
+            link.classList.remove('active')
+            const section = link.getAttribute('data-section')
+            if (section === current) {
+                link.classList.add('active')
+            }
+        })
+    }
+    
+    window.addEventListener('scroll', update_active_link, { passive: true })
+    update_active_link()
+    
+    links.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault()
+            const href = this.getAttribute('href')
+            const target = document.querySelector(href)
+            
+            if (target) {
+                const offset = 100
+                window.scrollTo({
+                    top: target.offsetTop - offset,
+                    behavior: 'smooth'
+                })
+            }
+        })
+    })
 }
 
 function flip_word() {
@@ -596,10 +1392,12 @@ function init_navigation() {
     const toggle = document.getElementById('menuToggle')
     const menu = document.getElementById('navMenu')
     
-    toggle.addEventListener('click', function() {
-        toggle.classList.toggle('active')
-        menu.classList.toggle('active')
-    })
+    if (toggle && menu) {
+        toggle.addEventListener('click', function() {
+            toggle.classList.toggle('active')
+            menu.classList.toggle('active')
+        })
+    }
     
     document.querySelectorAll('a[href^="#"]').forEach(function(link) {
         link.addEventListener('click', function(e) {
@@ -613,8 +1411,8 @@ function init_navigation() {
                     top: target.offsetTop - offset,
                     behavior: 'smooth'
                 })
-                menu.classList.remove('active')
-                toggle.classList.remove('active')
+                if (menu) menu.classList.remove('active')
+                if (toggle) toggle.classList.remove('active')
             }
         })
     })
@@ -833,6 +1631,11 @@ function init() {
     init_filters()
     init_modals()
     init_card_hover()
+    init_globe()
+    init_lamp()
+    init_hero_highlight()
+    init_sidebar()
+    init_text_effects()
     
     setTimeout(type_text, 1000)
 }
