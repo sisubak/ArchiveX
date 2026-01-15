@@ -3,7 +3,7 @@ const clientsData = [
         title: "ae86 client vae5",
         type: "teeworlds cheat",
         badge: "teeworlds • cheat",
-        description: "модифицированная версия sash client от русского разработчика с улучшенным функционалом",
+        description: "modified version of sash client from a Russian developer with improved functionality",
         image: "https://i.postimg.cc/L5XYVw5j/Ae86-Client-b-Rsph-Qx-Yd-C.png",
         download: "https://drive.google.com/file/d/1kc2a6ccX0Io4x4Y4pkcFbGn4ihAsufLU/view?usp=sharing",
         arts: [
@@ -17,7 +17,7 @@ const clientsData = [
         title: "krx client 1.32 crack",
         type: "ddnet",
         badge: "ddnet • cheat • crack",
-        description: "кряк крякнутой версия krx клиента 1.32, но не рабочим когом пароль от архива: 1",
+        description: "crack of the cracked version of krx client 1.32 but with non-working cog, archive password: 1",
         image: "https://i.postimg.cc/25c5w7b1/image.png",
         download: "https://drive.google.com/file/d/1DlHPGvhOozqGMM2PliZKBgY6QtD4jjvU/view?usp=sharing",
         arts: [
@@ -29,7 +29,7 @@ const clientsData = [
         title: "krx client 1.31 crack",
         type: "ddnet",
         badge: "ddnet • cheat • crack",
-        description: "ода, кряк 1.31, как оригинально. Логика та же как у и нового кряка. Пароль 1:",
+        description: "oh a crack 1.31 how original, same logic as the new crack, password: 1",
         image: "https://i.postimg.cc/FKJHr92F/izobrazenie.png",
         download: "https://drive.google.com/file/d/1eTfpQ2yhXJVqJgWP5wokEOalHaJWaTEf/view?usp=sharing",
         arts: [
@@ -41,7 +41,7 @@ const clientsData = [
         title: "krx client 1.32 crack NEW",
         type: "ddnet",
         badge: "ddnet • cheat • crack",
-        description: "тот самый же кряк, но СОВЕРШЕННО новой версии которая ничего не требует кроме запуска клиента. Пароль 1",
+        description: "the same crack but a COMPLETELY new version that requires nothing but launching the client, password: 1",
         image: "https://i.postimg.cc/25c5w7b1/image.png",
         download: "https://drive.google.com/file/d/1gZcg93sA82rroRTp8M7NNZRKeeV0hsfF/view?usp=sharing",
         arts: [
@@ -53,7 +53,7 @@ const clientsData = [
         title: "ae86 client vae6 beta",
         type: "teeworlds cheat",
         badge: "ddnet • cheat",
-        description: "новая бета версия клиента ae86 client",
+        description: "new beta version of ae86 client",
         image: "https://i.postimg.cc/TPX4yVND/image.png",
         download: "https://drive.google.com/file/d/1d8EPjCQTdrJj4llGI2QUwnim8d97arUk/view?usp=sharing",
         arts: [
@@ -67,7 +67,7 @@ const clientsData = [
         title: "dd.cff client",
         type: "ddnet cheat",
         badge: "ddnet • cheat",
-        description: "мощный клиент для ddnet с отличным чит функционалом",
+        description: "powerful client for ddnet with excellent cheat functionality",
         image: "https://i.postimg.cc/G2v8F0C2/77CC8FC6-1104-4999-8425-9563957F3F83.png",
         download: "https://drive.google.com/file/d/1LpZuH7zDUTwNF1EQowUntNUQDPUwB4CN/view?usp=drive_link",
         arts: ["https://i.postimg.cc/9FGhQvZy/image.png"]
@@ -76,7 +76,7 @@ const clientsData = [
         title: "goreworlds client",
         type: "teeworlds",
         badge: "teeworlds",
-        description: "клиент имеющий 16+ отметку так как имеет кровь и другие вещи",
+        description: "client with 16+ rating as it has blood and other things",
         image: "https://i.postimg.cc/158VnkLQ/Goreworlds-g27du-XIFXy.png",
         download: "https://drive.google.com/file/d/1yF6pZtd9w4x7-uNlRMlN2sDPLAP7aJgc/view?usp=sharing"
     },
@@ -84,7 +84,7 @@ const clientsData = [
         title: "nn client crack",
         type: "ddnet",
         badge: "ddnet • cheat",
-        description: "похож на tclientv3 plus, но улучшенный функционал",
+        description: "similar to tclientv3 plus but with improved functionality",
         image: "https://i.postimg.cc/B6gS75VW/image.png",
         download: "https://drive.google.com/file/d/1ckCVIP2HAZPDuPsqcsEWJdcTkOnUMuHk/view?usp=sharing"
     },
@@ -92,7 +92,7 @@ const clientsData = [
         title: "sash upgradev32",
         type: "teeworlds cheat",
         badge: "teeworlds • cheat",
-        description: "обновленная версия популярного клиента sash",
+        description: "updated version of the popular sash client",
         image: "https://i.postimg.cc/9QGYfLgC/DDNet-f-FKHEV6m-BU.png",
         download: "https://drive.google.com/file/d/1dj57EspAJG3SepJtIx33RY4-R7jiSlhm/view?usp=sharing",
         arts: ["https://i.postimg.cc/nrp1YjSJ/image.png"]
@@ -101,7 +101,7 @@ const clientsData = [
         title: "saiko",
         type: "teeworlds cheat",
         badge: "ddnet • cheat",
-        description: "tclient, но с avoid freeze функционалом саппорт",
+        description: "tclient but with avoid freeze functionality support",
         image: "https://i.postimg.cc/CxpZ956N/image.png",
         download: "https://drive.google.com/file/d/1OBtyT__yH9MmuFxgcddySd5B2I3EfTL3/view?usp=sharing"
     },
@@ -109,7 +109,7 @@ const clientsData = [
         title: "MRXClient",
         type: "ddnet cheat",
         badge: "ddnet • cheat",
-        description: "клиентик для тех кто любит не палиться и новайс мапы",
+        description: "client for those who like to stay undetected and play novice maps",
         image: "https://i.postimg.cc/ZRPHGG4q/izobrazenie.png",
         download: "https://drive.google.com/file/d/12gKIkI7XXIhgmpNRsxM9-74HrIx1aT5k/view?usp=sharing"
     },
@@ -117,7 +117,7 @@ const clientsData = [
         title: "Ae86 Client vAe4",
         type: "teeworlds cheat",
         badge: "teeworlds • cheat",
-        description: "старая версия Ae86 Client",
+        description: "old version of Ae86 Client",
         image: "https://i.postimg.cc/q7yW7Zpq/izobrazenie.png",
         download: "https://drive.google.com/file/d/1Q-cdqeR3igj8D1Lm40_OLaOuo43a53Ak/view?usp=drive_link",
         arts: [
@@ -131,7 +131,7 @@ const clientsData = [
         title: "KoshkaClient",
         type: "ddnet",
         badge: "ddnet",
-        description: "легит клиент от создателя KotClient'а",
+        description: "legit client from the creator of KotClient",
         image: "https://i.postimg.cc/6QxWbjw5/izobrazenie.png",
         download: "https://drive.google.com/file/d/1I7bUk7DFVcEd8MUL6sCXtgvjmx5Fk_3I/view?usp=sharing"
     },
@@ -139,7 +139,7 @@ const clientsData = [
         title: "Rclient",
         type: "ddnet",
         badge: "ddnet",
-        description: "самый ЛУЧШИЙ клиент для легитов, причем без пиздижа. Имеет буквально ВСЕ функции",
+        description: "the BEST client for legits no cap, has literally ALL features",
         image: "https://i.postimg.cc/xTcHF6zq/izobrazenie.png",
         download: "https://drive.google.com/file/d/1WQ6sPMOkWduOunJ5D0iIkOLusapOmBA4/view?usp=sharing"
     },
@@ -147,7 +147,7 @@ const clientsData = [
         title: "E>client",
         type: "ddnet",
         badge: "ddnet",
-        description: "легит клиент, подойдет для тех кому не нравится чем-то Rclient",
+        description: "legit client suitable for those who don't like something about Rclient",
         image: "https://i.postimg.cc/vB4gSB1R/izobrazenie.png",
         download: "https://drive.google.com/file/d/1WHAjrSdDI3hfBftzrFFzeA0HF6Az2v5C/view?usp=sharing"
     },
@@ -155,7 +155,7 @@ const clientsData = [
         title: "soup",
         type: "teeworlds cheat",
         badge: "ddnet • cheat",
-        description: "копирка saiko, но с более улучшенным авойдом. Подойдет для легитов",
+        description: "saiko copycat but with improved avoid, suitable for legits",
         image: "https://i.postimg.cc/fyHYYktn/izobrazenie.png",
         download: "https://drive.google.com/file/d/1m4_s9OnHBNlhoYIaKygvQutLbbKy3ucS/view?usp=sharing",
         discord: "https://discord.gg/ECeDVAEVJn"
@@ -164,7 +164,7 @@ const clientsData = [
         title: "sakura client",
         type: "ddnet",
         badge: "ddnet",
-        description: "элегантный клиент с уникальным дизайном",
+        description: "elegant client with unique design",
         image: "https://i.postimg.cc/YCT1ndNg/DDNet-Nvq-Le-PTl3l.png",
         download: "https://drive.google.com/file/d/1dAN7qLy7EBhL5fpjM2Q3dgUNOO-o7bYl/view?usp=sharing"
     },
@@ -172,7 +172,7 @@ const clientsData = [
         title: "sash by akrd1337",
         type: "teeworlds cheat",
         badge: "teeworlds • cheat",
-        description: "модифицированная версия sash клиента",
+        description: "modified version of sash client",
         image: "https://i.postimg.cc/RF0yrWQr/Sash-crack-9-Bk-Px-GRpz-A.png",
         download: "https://drive.google.com/file/d/1TZLt4QWUcG5BXxzw4_BLi4f6yJMbs3hQ/view?usp=sharing",
         arts: ["https://i.postimg.cc/nrp1YjSJ/image.png"]
@@ -181,7 +181,7 @@ const clientsData = [
         title: "ChillerBot Client",
         type: "teeworlds",
         badge: "teeworlds",
-        description: "xz xyeta kakayota<3",
+        description: "idk some random stuff<3",
         image: "https://i.postimg.cc/GtSjQTWk/izobrazenie.png",
         download: "https://drive.google.com/drive/folders/1BEnkumBWMuws3Qy2k6rD27WSynLsFj-6?usp=sharing"
     },
@@ -189,7 +189,7 @@ const clientsData = [
         title: "PPDDNet Client",
         type: "ddnet",
         badge: "ddnet",
-        description: "создатель веба не смог запустить этот клиент...",
+        description: "the web creator couldn't launch this client",
         image: "https://i.postimg.cc/NjVjcGcf/izobrazenie.png",
         download: "https://drive.google.com/drive/folders/1Vt951yPEZR83FyrLcGw9HJiZDw76t9ws?usp=sharing"
     },
@@ -197,7 +197,7 @@ const clientsData = [
         title: "jimjam client",
         type: "teeworlds",
         badge: "teeworlds",
-        description: "прикольный клиент, в нем есть много разных полезных функций",
+        description: "cool client with many different useful features",
         image: "https://i.postimg.cc/HWZ7LYvz/jimjam.png",
         download: "https://drive.google.com/file/d/1_o3R3FQs3Jv3ARDJKz2EslMxJLbZPJZG/view?usp=sharing"
     },
@@ -205,7 +205,7 @@ const clientsData = [
         title: "k-client",
         type: "teeworlds cheat",
         badge: "teeworlds • cheat",
-        description: "клиент похожий на krx, но на teeworlds",
+        description: "client similar to krx but for teeworlds",
         image: "https://i.postimg.cc/HxtXzb21/K-Client-ENFC6b2kks.png",
         download: "https://drive.google.com/file/d/1CknKAMSTwWoU3OlPwMacin0mqfAaBiRY/view?usp=sharing"
     },
@@ -213,7 +213,7 @@ const clientsData = [
         title: "mario client",
         type: "teeworlds",
         badge: "teeworlds",
-        description: "тематический клиент с одной функции которая добавляет визуального mario на сервер",
+        description: "themed client with one feature that adds visual mario to the server",
         image: "https://i.postimg.cc/qMqych6W/mario.png",
         download: "https://drive.google.com/file/d/1wrDlSev7R_3c33wP87tXaFD2dLireEL-/view?usp=sharing"
     },
@@ -221,7 +221,7 @@ const clientsData = [
         title: "dperx",
         type: "ddnet",
         badge: "ddnet • cheat",
-        description: "не совсем клиент. Инжектиться в сам дднет и добавляет чит через него",
+        description: "not exactly a client, injects into ddnet itself and adds cheats through it",
         image: "https://i.postimg.cc/yNZq5Z7K/izobrazenie.png",
         download: "https://github.com/kiocode/DPerX-Reborn/releases/download/1.1.4/dperx-reborn-1.1.4-setup.exe"
     },
@@ -229,7 +229,7 @@ const clientsData = [
         title: "pulse client",
         type: "ddnet",
         badge: "ddnet",
-        description: "новый клиент сильно вдохновленный cactus client'ом",
+        description: "new client heavily inspired by cactus client",
         image: "https://i.postimg.cc/Pf218zJm/pulse-client.png",
         download: "https://drive.google.com/file/d/100huDXqIS2xmbM1vxAi3YCM_UjxInq8l/view?usp=sharing"
     },
@@ -237,7 +237,7 @@ const clientsData = [
         title: "s-client",
         type: "teeworlds",
         badge: "teeworlds",
-        description: "клиент похожий на tclient, но на teewoorlds",
+        description: "client similar to tclient but for teeworlds",
         image: "https://i.postimg.cc/d3HdPvpW/S-Client-Ys-E8k9f-B1w.png",
         download: "https://drive.google.com/file/d/1bUL49r3GTPZInQUZx-fr_WtNmaEanUU4/view?usp=sharing"
     },
@@ -245,7 +245,7 @@ const clientsData = [
         title: "sqclient",
         type: "ddnet cheat",
         badge: "ddnet • cheat",
-        description: "новый чит клиент, а точнее его крякнутая версия модификация tclient, но с читами",
+        description: "new cheat client, or rather its cracked version, modification of tclient but with cheats",
         image: "https://i.postimg.cc/vZ6njJzz/SQClient.png",
         download: "https://drive.google.com/file/d/1nAvrsid6ZItkiCzBzBcDToCNjskj5pnC/view?usp=sharing"
     },
@@ -253,7 +253,7 @@ const clientsData = [
         title: "sta client",
         type: "teeworlds cheat",
         badge: "teeworlds • cheat",
-        description: "стабильный клиент с расширенным функционалом созданный модератором ddnet",
+        description: "stable client with extended functionality created by a ddnet moderator",
         image: "https://i.postimg.cc/W4Gkp0xq/Sta.png",
         download: "https://drive.google.com/file/d/1aL4HRDIPJvvzsQ0IaFM03ymjDmUCvdCJ/view?usp=sharing"
     },
@@ -261,7 +261,7 @@ const clientsData = [
         title: "tclientv3+",
         type: "ddnet cheat",
         badge: "ddnet • cheat",
-        description: "старая версия популярного tclient, но с чит функционалом",
+        description: "old version of the popular tclient but with cheat functionality",
         image: "https://i.postimg.cc/7L8zyKty/Tclient-Plus.png",
         download: "https://drive.google.com/file/d/1Z019ZmXcA936aFyiz3Qv65Mx8lYpm_NP/view?usp=sharing",
         arts: ["https://i.postimg.cc/Z5CxchH8/image.png"]
@@ -270,7 +270,7 @@ const clientsData = [
         title: "vbot client",
         type: "teeworlds cheat",
         badge: "teeworlds • cheat",
-        description: "чит клиент имеющий бота",
+        description: "cheat client with a bot",
         image: "https://i.postimg.cc/LXmZJnMC/vbot.png",
         download: "https://drive.google.com/file/d/1wyWOSwKvVmb7XYczlA_s9tcBpzsFHspm/view?usp=sharing"
     },
@@ -278,7 +278,7 @@ const clientsData = [
         title: "zyro client",
         type: "ddnet cheat",
         badge: "ddnet • cheat",
-        description: "чит клиент, создан для не большой помощи разработчикам в создании новых клиентов",
+        description: "cheat client created to provide small assistance to developers in creating new clients",
         image: "https://i.postimg.cc/9M1wZCmW/zyro.png",
         download: "https://drive.google.com/file/d/19rqXCnSE3A1t8-qOwJrn-MB7UedwzrdS/view?usp=sharing"
     },
@@ -286,7 +286,7 @@ const clientsData = [
         title: "cactus client",
         type: "ddnet",
         badge: "ddnet",
-        description: "почти такой же клиент как и tclient, но создан на русском языке",
+        description: "almost the same client as tclient but created in Russian",
         image: "https://i.postimg.cc/6pdSr5SJ/DDNet-0-FDBKfkq-Sp.png",
         download: "https://drive.google.com/file/d/1T7T110zIphf9PGiXL-5e0H5TWM6SrP6x/view?usp=sharing",
         arts: ["https://i.postimg.cc/J0rbBwtN/image.png"]
@@ -295,7 +295,7 @@ const clientsData = [
         title: "cactus client private",
         type: "ddnet",
         badge: "ddnet",
-        description: "тот же cactus client, но крякнутая приватная версия",
+        description: "the same cactus client but cracked private version",
         image: "https://i.postimg.cc/W1j9TM9Y/image.png",
         download: "https://drive.google.com/file/d/1SyKu6KNSZIDOl_Psex72ydLy8GrWt4f6/view?usp=sharing",
         arts: ["https://i.postimg.cc/J0rbBwtN/image.png"]
@@ -304,7 +304,7 @@ const clientsData = [
         title: "tater client",
         type: "ddnet",
         badge: "ddnet",
-        description: "модификация ddnet клиента со своим визуальным функционалом",
+        description: "modification of ddnet client with its own visual functionality",
         image: "https://i.postimg.cc/L53Dqn5N/DDNet-Kkrd-PXJh-TN.png",
         download: "https://drive.google.com/file/d/1Edpb1pXB6_WngDM1XhqiGJL4bDGKJ85T/view?usp=sharing",
         arts: ["https://i.postimg.cc/Z5CxchH8/image.png"]
