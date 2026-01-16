@@ -136,6 +136,19 @@ const clientsData = [
         download: "https://drive.google.com/file/d/1I7bUk7DFVcEd8MUL6sCXtgvjmx5Fk_3I/view?usp=sharing"
     },
     {
+        title: "KotClient",
+        type: "ddnet cheat",
+        badge: "ddnet • cheat",
+        description: "нью клиент, все так же похож на saiko, но функционал гораздо лучше",
+        image: "https://i.postimg.cc/0jLGTvM0/izobrazenie.png",
+        download: "https://drive.google.com/file/d/10MVoOVDmUfaYvdGdXEmQgr-aBJuoxhvm/view?usp=sharing",
+        arts: [
+            "https://i.postimg.cc/gkFJqPzF/photo-2025-12-03-12-14-23.jpg",
+            "https://i.postimg.cc/6pRk5Gtr/izobrazenie%281%29.jpg",
+            "https://i.postimg.cc/DzPR1kWr/izobrazenie%282%29.png"
+        ]
+    },
+    {
         title: "Rclient",
         type: "ddnet",
         badge: "ddnet",
