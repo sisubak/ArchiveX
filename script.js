@@ -192,7 +192,8 @@ const clientsData = [
         description: "new version of soup client, bet better functional",
         image: "https://i.postimg.cc/gk5HGDxY/izobrazenie.png",
         download: "https://drive.google.com/file/d/1ol3-0vZ-iQDfV7n1bGIvmu8MQfMO9mxI/view?usp=sharing",
-        discord: "https://discord.gg/ECeDVAEVJn"
+        discord: "https://discord.gg/ECeDVAEVJn",
+        arts: ["https://i.postimg.cc/SKqBG8Ws/izobrazenie.png"]
     },
     {
         title: "sakura client",
