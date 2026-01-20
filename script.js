@@ -50,7 +50,7 @@ const clientsData = [
         ]
     },
     {
-        title: "krx client 1.32 crack NEW",
+        title: "krx client 1.30 crack",
         type: "ddnet",
         badge: "ddnet • cheat • crack",
         description: "krx crack 1.30 omg",
