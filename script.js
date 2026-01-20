@@ -303,6 +303,14 @@ const clientsData = [
         arts: ["https://i.postimg.cc/Z5CxchH8/image.png"]
     },
     {
+        title: "UBR Client",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "idk, new legit clientL ol",
+        image: "https://i.postimg.cc/pLJmCwmY/izobrazenie.png",
+        download: "https://drive.google.com/file/d/1xy2b4sy4Ad3fbgsyjVIo_BwQ2VDhyu6n/view?usp=sharing"
+    },
+    {
         title: "vbot client",
         type: "teeworlds cheat",
         badge: "teeworlds • cheat",
