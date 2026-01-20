@@ -174,6 +174,15 @@ const clientsData = [
         discord: "https://discord.gg/ECeDVAEVJn"
     },
     {
+        title: "soup beta 1.0.1",
+        type: "ddnet cheat",
+        badge: "ddnet • cheat",
+        description: "new version of soup client, bet better functional",
+        image: "https://i.postimg.cc/gk5HGDxY/izobrazenie.png",
+        download: "https://drive.google.com/file/d/1ol3-0vZ-iQDfV7n1bGIvmu8MQfMO9mxI/view?usp=sharing",
+        discord: "https://discord.gg/ECeDVAEVJn"
+    },
+    {
         title: "sakura client",
         type: "ddnet",
         badge: "ddnet",
