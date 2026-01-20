@@ -183,7 +183,8 @@ const clientsData = [
         description: "saiko copycat but with improved avoid, suitable for legits",
         image: "https://i.postimg.cc/fyHYYktn/izobrazenie.png",
         download: "https://drive.google.com/file/d/1m4_s9OnHBNlhoYIaKygvQutLbbKy3ucS/view?usp=sharing",
-        discord: "https://discord.gg/ECeDVAEVJn"
+        discord: "https://discord.gg/ECeDVAEVJn",
+        arts: ["https://i.postimg.cc/SKqBG8Ws/izobrazenie.png"]
     },
     {
         title: "soup beta 1.0.1",
