@@ -169,6 +169,14 @@ const clientsData = [
         download: "https://drive.google.com/file/d/1WQ6sPMOkWduOunJ5D0iIkOLusapOmBA4/view?usp=sharing"
     },
     {
+        title: "Rclient",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "legit client, with cool visuals",
+        image: "https://private-user-images.githubusercontent.com/79476345/280469250-9dcdf4f8-2fe5-426e-ac2d-d3d6bbc12b23.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzA0NTgwNjgsIm5iZiI6MTc3MDQ1Nzc2OCwicGF0aCI6Ii83OTQ3NjM0NS8yODA0NjkyNTAtOWRjZGY0ZjgtMmZlNS00MjZlLWFjMmQtZDNkNmJiYzEyYjIzLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNjAyMDclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjYwMjA3VDA5NDkyOFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWQ0MzFiNDI5ZTI1MDNmZTUyNzNkN2U2Y2U3OTAzYTczZDIxOTJjNTc1MTdkY2YzMjBiYmUyZTQ3MDFhNzcwMDUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.Ga97wJ-iXchg-HAv9SYMZCQWDYb479WMgITRv8JuMLA",
+        download: "https://github.com/Ar1gin/duck-ddnet/releases/download/19.2-duck/DDNet.exe"
+    },
+    {
         title: "E>client",
         type: "ddnet",
         badge: "ddnet",
