@@ -101,6 +101,14 @@ const clientsData = [
         download: "https://drive.google.com/file/d/1ckCVIP2HAZPDuPsqcsEWJdcTkOnUMuHk/view?usp=sharing"
     },
     {
+        title: "shalawa client",
+        type: "ddnet",
+        badge: "ddnet • cheat",
+        description: "shalawa client freel ol",
+        image: "https://i.postimg.cc/DZTbxfnP/izobrazenie.png",
+        download: "https://drive.google.com/file/d/1ol3-0vZ-iQDfV7n1bGIvmu8MQfMO9mxI/view?usp=sharing"
+    },
+    {
         title: "sash upgradev32",
         type: "teeworlds cheat",
         badge: "teeworlds • cheat",
@@ -169,7 +177,7 @@ const clientsData = [
         download: "https://drive.google.com/file/d/1WQ6sPMOkWduOunJ5D0iIkOLusapOmBA4/view?usp=sharing"
     },
     {
-        title: "Rclient",
+        title: "Duck Client",
         type: "ddnet",
         badge: "ddnet",
         description: "legit client, with cool visuals",
