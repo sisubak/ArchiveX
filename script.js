@@ -1,5 +1,26 @@
 const clientsData = [
     {
+        title: "Shalawa Client 1.1.0",
+        type: "ddnet",
+        badge: "ddnet • cheat",
+        description: "NEW and GOOD client. Good visuals and other",
+        image: "https://i.postimg.cc/ZR60pfjg/izobrazenie.png",
+        download: "https://drive.google.com/drive/folders/1DuJsYMxyV0bwtI0yj6k1Zm7lp6mxQo-P?usp=sharing",
+        telegram: "https://t.me/shalawa_client"
+    },
+    {
+        title: "krx client 1.36.1 CRACK",
+        type: "ddnet",
+        badge: "ddnet • cheat • crack",
+        description: "crack version of krx client 1.36.1",
+        image: "https://i.postimg.cc/prnCfM4w/izobrazenie.png",
+        buy: "@dnskrxevelyn_bot",
+        arts: [
+            "https://i.postimg.cc/kgb7KB0Q/image.png",
+            "https://i.postimg.cc/VNFQWMD5/image.png"
+        ]
+    },
+    {
         title: "ae86 client vae5",
         type: "teeworlds cheat",
         badge: "teeworlds • cheat",
@@ -101,14 +122,6 @@ const clientsData = [
         download: "https://drive.google.com/file/d/1ckCVIP2HAZPDuPsqcsEWJdcTkOnUMuHk/view?usp=sharing"
     },
     {
-        title: "shalawa client",
-        type: "ddnet",
-        badge: "ddnet • cheat",
-        description: "shalawa client freel ol",
-        image: "https://i.postimg.cc/DZTbxfnP/izobrazenie.png",
-        download: "https://drive.google.com/file/d/1ol3-0vZ-iQDfV7n1bGIvmu8MQfMO9mxI/view?usp=sharing"
-    },
-    {
         title: "sash upgradev32",
         type: "teeworlds cheat",
         badge: "teeworlds • cheat",
@@ -154,6 +167,23 @@ const clientsData = [
         description: "legit client from the creator of KotClient",
         image: "https://i.postimg.cc/6QxWbjw5/izobrazenie.png",
         download: "https://drive.google.com/file/d/1I7bUk7DFVcEd8MUL6sCXtgvjmx5Fk_3I/view?usp=sharing"
+    },
+    {
+        title: "FeX Client",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "legit client. Support playing with clans",
+        image: "https://i.postimg.cc/jdgmQRDp/izobrazenie.png",
+        download: "https://drive.google.com/file/d/1J22ek5ap8_6Tm2y4hKGZ26Pzw4pfyEh3/view?usp=sharing"
+    },
+    {
+        title: "Best Client",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "NEW legit client with cool functions (maybe better of Rclient)",
+        image: "https://i.postimg.cc/05HbTJFK/izobrazenie.png",
+        download: "https://drive.google.com/file/d/1h0ErcKGUr5_bI9H9_2WNOTSBjsZ64cyM/view?usp=sharing",
+        discord: "discord.gg/eBgyKmbxdn"
     },
     {
         title: "KotClient",
