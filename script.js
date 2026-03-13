@@ -14,7 +14,7 @@ const clientsData = [
         badge: "ddnet • cheat • crack",
         description: "crack version of krx client 1.36.1",
         image: "https://i.postimg.cc/prnCfM4w/izobrazenie.png",
-        buy: "@dnskrxevelyn_bot",
+        buy: "https://t.me/dnskrxevelyn_bot",
         arts: [
             "https://i.postimg.cc/kgb7KB0Q/image.png",
             "https://i.postimg.cc/VNFQWMD5/image.png"
