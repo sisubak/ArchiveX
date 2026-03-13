@@ -448,7 +448,8 @@ function render_clients() {
         if (client.download) {
             download_btn = `<a href="${client.download}" class="card-btn" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</a>`
         } else if (client.buy) {
-            download_btn = `<a href="${client.buy}" class="card-btn" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>Buy</a>`
+            const buyLink = client.buy.startsWith('@') ? 'https://t.me/' + client.buy.slice(1) : client.buy;
+            download_btn = `<a href="${buyLink}" class="card-btn" target="_blank">
         }
         
         card.innerHTML = `
