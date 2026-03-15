@@ -1724,7 +1724,7 @@ function init_card_hover() {
     })
 }
 
-const BADGE_TEXT_RU = 'Этот бейдж означает, что клиент прошёл верификацию на стороне администрации и оплатил определённую сумму, чтобы оказаться в архиве. Каждый клиент, что проверяется — проверяется и на вайбкод. Если он будет навайбкоженным и безопасным, то автору нужно будет заплатить владельцу вебсайта, чтобы он тут оказался. Все другие клиенты, которые не имеют подобный бейдж, прошли верификацию и оказались здесь совершенно бесплатно.'
+const BADGE_TEXT_RU = 'Этот бейдж означает, что клиент прошёл верификацию на стороне администрации и оплатил определённую сумму, чтобы оказаться в архиве. Каждый клиент, что проверяется -> проверяется и на вайбкод. Если он будет навайбкоженным и безопасным, то автору нужно будет заплатить владельцу вебсайта, чтобы он тут оказался. Все другие клиенты, которые не имеют подобный бейдж, прошли верификацию и оказались здесь совершенно бесплатно.'
 const BADGE_TEXT_EN = 'This badge means the client has been verified by the administration and the author paid a certain amount to be listed in the archive. Every client that is reviewed is also checked for vibe-coding. If it turns out to be vibe-coded and safe, the author must pay the website owner to be featured here. All other clients without this badge have been verified and listed completely for free.'
 
 var badge_animation_running = false
