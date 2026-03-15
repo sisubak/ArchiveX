@@ -15,6 +15,7 @@ const clientsData = [
         description: "crack version of krx client 1.36.1",
         image: "https://i.postimg.cc/prnCfM4w/izobrazenie.png",
         buy: "https://t.me/dnskrxevelyn_bot",
+        vibecoded: true,
         arts: [
             "https://i.postimg.cc/kgb7KB0Q/image.png",
             "https://i.postimg.cc/VNFQWMD5/image.png"
@@ -27,6 +28,7 @@ const clientsData = [
         description: "modified version of sash client from a Russian developer with improved functionality",
         image: "https://i.postimg.cc/L5XYVw5j/Ae86-Client-b-Rsph-Qx-Yd-C.png",
         download: "https://drive.google.com/file/d/1kc2a6ccX0Io4x4Y4pkcFbGn4ihAsufLU/view?usp=sharing",
+        vibecoded: true,
         arts: [
             "https://i.postimg.cc/TYjz6nvn/image.png",
             "https://i.postimg.cc/kMKZQWGt/image.png",
@@ -118,6 +120,7 @@ const clientsData = [
         type: "ddnet",
         badge: "ddnet • cheat",
         description: "similar to tclientv3 plus but with improved functionality",
+        vibecoded: true,
         image: "https://i.postimg.cc/B6gS75VW/image.png",
         download: "https://drive.google.com/file/d/1ckCVIP2HAZPDuPsqcsEWJdcTkOnUMuHk/view?usp=sharing"
     },
@@ -135,6 +138,7 @@ const clientsData = [
         type: "teeworlds cheat",
         badge: "ddnet • cheat",
         description: "tclient but with avoid freeze functionality support",
+        vibecoded: true,
         image: "https://i.postimg.cc/CxpZ956N/image.png",
         download: "https://drive.google.com/file/d/1OBtyT__yH9MmuFxgcddySd5B2I3EfTL3/view?usp=sharing"
     },
@@ -143,6 +147,7 @@ const clientsData = [
         type: "ddnet cheat",
         badge: "ddnet • cheat",
         description: "client for those who like to stay undetected and play novice maps",
+        vibecoded: true,
         image: "https://i.postimg.cc/ZRPHGG4q/izobrazenie.png",
         download: "https://drive.google.com/file/d/12gKIkI7XXIhgmpNRsxM9-74HrIx1aT5k/view?usp=sharing"
     },
@@ -166,6 +171,7 @@ const clientsData = [
         badge: "ddnet",
         description: "legit client from the creator of KotClient",
         image: "https://i.postimg.cc/6QxWbjw5/izobrazenie.png",
+        vibecoded: true,
         download: "https://drive.google.com/file/d/1I7bUk7DFVcEd8MUL6sCXtgvjmx5Fk_3I/view?usp=sharing"
     },
     {
@@ -181,6 +187,7 @@ const clientsData = [
         type: "ddnet",
         badge: "ddnet",
         description: "NEW legit client with cool functions (maybe better of Rclient)",
+        vibecoded: true,
         image: "https://i.postimg.cc/05HbTJFK/izobrazenie.png",
         download: "https://drive.google.com/file/d/1h0ErcKGUr5_bI9H9_2WNOTSBjsZ64cyM/view?usp=sharing",
         discord: "discord.gg/eBgyKmbxdn"
@@ -190,6 +197,7 @@ const clientsData = [
         type: "ddnet cheat",
         badge: "ddnet • cheat",
         description: "нью клиент, все так же похож на saiko, но функционал гораздо лучше",
+        vibecoded: true,
         image: "https://i.postimg.cc/0jLGTvM0/izobrazenie.png",
         download: "https://drive.google.com/file/d/10MVoOVDmUfaYvdGdXEmQgr-aBJuoxhvm/view?usp=sharing",
         arts: [
@@ -227,6 +235,7 @@ const clientsData = [
         type: "teeworlds cheat",
         badge: "ddnet • cheat",
         description: "saiko copycat but with improved avoid, suitable for legits",
+        vibecoded: true,
         image: "https://i.postimg.cc/fyHYYktn/izobrazenie.png",
         download: "https://drive.google.com/file/d/1m4_s9OnHBNlhoYIaKygvQutLbbKy3ucS/view?usp=sharing",
         discord: "https://discord.gg/ECeDVAEVJn",
@@ -237,6 +246,7 @@ const clientsData = [
         type: "ddnet cheat",
         badge: "ddnet • cheat",
         description: "new version of soup client, bet better functional",
+        vibecoded: true,
         image: "https://i.postimg.cc/gk5HGDxY/izobrazenie.png",
         download: "https://drive.google.com/file/d/1ol3-0vZ-iQDfV7n1bGIvmu8MQfMO9mxI/view?usp=sharing",
         discord: "https://discord.gg/ECeDVAEVJn",
@@ -353,6 +363,7 @@ const clientsData = [
         type: "ddnet",
         badge: "ddnet",
         description: "idk, new legit clientL ol",
+        vibecoded: true,
         image: "https://i.postimg.cc/pLJmCwmY/izobrazenie.png",
         download: "https://drive.google.com/file/d/1xy2b4sy4Ad3fbgsyjVIo_BwQ2VDhyu6n/view?usp=sharing"
     },
@@ -455,7 +466,10 @@ function render_clients() {
         card.innerHTML = `
             <div class="card-img">
                 <img src="${client.image}" alt="${client.title}" loading="lazy">
+                <div class="card-badges-row">
                 <span class="card-badge">${client.badge}</span>
+                ${client.vibecoded ? '<span class="card-badge-vibecoded" onclick="open_badge_modal(this, event)"><svg viewBox="0 0 512 509.639" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path fill-rule="nonzero" d="M412.037 221.764a90.834 90.834 0 004.648-28.67 90.79 90.79 0 00-12.443-45.87c-16.37-28.496-46.738-46.089-79.605-46.089-6.466 0-12.943.683-19.264 2.04a90.765 90.765 0 00-67.881-30.515h-.576c-.059.002-.149.002-.216.002-39.807 0-75.108 25.686-87.346 63.554-25.626 5.239-47.748 21.31-60.682 44.03a91.873 91.873 0 00-12.407 46.077 91.833 91.833 0 0023.694 61.553 90.802 90.802 0 00-4.649 28.67 90.804 90.804 0 0012.442 45.87c16.369 28.504 46.74 46.087 79.61 46.087a91.81 91.81 0 0019.253-2.04 90.783 90.783 0 0067.887 30.516h.576l.234-.001c39.829 0 75.119-25.686 87.357-63.588 25.626-5.242 47.748-21.312 60.682-44.033a91.718 91.718 0 0012.383-46.035 91.83 91.83 0 00-23.693-61.553l-.004-.005zM275.102 413.161h-.094a68.146 68.146 0 01-43.611-15.8 56.936 56.936 0 002.155-1.221l72.54-41.901a11.799 11.799 0 005.962-10.251V241.651l30.661 17.704c.326.163.55.479.596.84v84.693c-.042 37.653-30.554 68.198-68.21 68.273h.001zm-146.689-62.649a68.128 68.128 0 01-9.152-34.085c0-3.904.341-7.817 1.005-11.663.539.323 1.48.897 2.155 1.285l72.54 41.901a11.832 11.832 0 0011.918-.002l88.563-51.137v35.408a1.1 1.1 0 01-.438.94l-73.33 42.339a68.43 68.43 0 01-34.11 9.12 68.359 68.359 0 01-59.15-34.11l-.001.004zm-19.083-158.36a68.044 68.044 0 0135.538-29.934c0 .625-.036 1.731-.036 2.5v83.801l-.001.07a11.79 11.79 0 005.954 10.242l88.564 51.13-30.661 17.704a1.096 1.096 0 01-1.034.093l-73.337-42.375a68.36 68.36 0 01-34.095-59.143 68.412 68.412 0 019.112-34.085l-.004-.003zm251.907 58.621l-88.563-51.137 30.661-17.697a1.097 1.097 0 011.034-.094l73.337 42.339c21.109 12.195 34.132 34.746 34.132 59.132 0 28.604-17.849 54.199-44.686 64.078v-86.308c.004-.032.004-.065.004-.096 0-4.219-2.261-8.119-5.919-10.217zm30.518-45.93c-.539-.331-1.48-.898-2.155-1.286l-72.54-41.901a11.842 11.842 0 00-5.958-1.611c-2.092 0-4.15.558-5.957 1.611l-88.564 51.137v-35.408l-.001-.061a1.1 1.1 0 01.44-.88l73.33-42.303a68.301 68.301 0 0134.108-9.129c37.704 0 68.281 30.577 68.281 68.281a68.69 68.69 0 01-.984 11.545v.005zm-191.843 63.109l-30.668-17.704a1.09 1.09 0 01-.596-.84v-84.692c.016-37.685 30.593-68.236 68.281-68.236a68.332 68.332 0 0143.689 15.804 63.09 63.09 0 00-2.155 1.222l-72.54 41.9a11.794 11.794 0 00-5.961 10.248v.068l-.05 102.23zm16.655-35.91l39.445-22.782 39.444 22.767v45.55l-39.444 22.767-39.445-22.767v-45.535z"/></svg>VibeCoded</span>' : ''}
+            </div>
             </div>
             <div class="card-body">
                 <h3 class="card-title">${client.title}</h3>
@@ -1710,6 +1724,401 @@ function init_card_hover() {
     })
 }
 
+const BADGE_TEXT_RU = 'Этот бейдж означает, что клиент прошёл верификацию на стороне администрации и оплатил определённую сумму, чтобы оказаться в архиве. Каждый клиент, что проверяется — проверяется и на вайбкод. Если он будет навайбкоженным и безопасным, то автору нужно будет заплатить владельцу вебсайта, чтобы он тут оказался. Все другие клиенты, которые не имеют подобный бейдж, прошли верификацию и оказались здесь совершенно бесплатно.'
+const BADGE_TEXT_EN = 'This badge means the client has been verified by the administration and the author paid a certain amount to be listed in the archive. Every client that is reviewed is also checked for vibe-coding. If it turns out to be vibe-coded and safe, the author must pay the website owner to be featured here. All other clients without this badge have been verified and listed completely for free.'
+
+var badge_animation_running = false
+var badge_source_el = null
+var badge_source_rect = null
+var badge_typing_intervals = []
+
+function measureBadgeHeight(modalW) {
+    var m = document.createElement('div')
+    m.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;width:' + modalW + 'px;padding:40px;display:flex;flex-direction:column;align-items:center;gap:16px;font-family:Inter,sans-serif;'
+    m.innerHTML = '<div style="width:56px;height:56px;flex-shrink:0"></div>' +
+        '<div style="font-size:14px;line-height:1.7;text-align:center;max-width:440px">' +
+        '<div style="font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:6px">RU</div>' +
+        '<div style="margin-bottom:12px">' + BADGE_TEXT_RU + '</div>' +
+        '<div style="height:2px;margin:16px auto"></div>' +
+        '<div style="font-size:11px;font-weight:700;letter-spacing:2px;margin-bottom:6px">EN</div>' +
+        '<div style="margin-bottom:12px">' + BADGE_TEXT_EN + '</div>' +
+        '</div>'
+    document.body.appendChild(m)
+    var h = m.offsetHeight + 20
+    document.body.removeChild(m)
+    return Math.min(h, window.innerHeight * 0.85)
+}
+
+function open_badge_modal(el, e) {
+    e.stopPropagation()
+    if (badge_animation_running) return
+    badge_animation_running = true
+
+    badge_source_el = el
+    badge_source_rect = el.getBoundingClientRect()
+
+    var overlay = document.getElementById('badgeOverlay')
+    var modal = document.getElementById('badgeModal')
+    var textContainer = document.getElementById('badgeModalText')
+    var icon = modal.querySelector('.badge-modal-icon')
+    var overlayBg = document.getElementById('badgeOverlayBg')
+
+    textContainer.innerHTML = ''
+    textContainer.classList.remove('content-visible')
+    icon.style.display = 'none'
+    icon.style.opacity = '0'
+    overlayBg.style.opacity = '0'
+    overlayBg.style.transition = 'none'
+
+    var rect = badge_source_rect
+    var modalW = Math.min(520, window.innerWidth * 0.9)
+    var modalH = measureBadgeHeight(modalW)
+
+    el.classList.add('badge-hidden')
+    overlay.classList.add('active')
+
+    modal.style.cssText = [
+        'position:fixed',
+        'left:' + rect.left + 'px',
+        'top:' + rect.top + 'px',
+        'width:' + rect.width + 'px',
+        'height:' + rect.height + 'px',
+        'border-radius:100px',
+        'background:linear-gradient(135deg,#15803d,#22c55e)',
+        'opacity:1',
+        'transform:none',
+        'padding:0',
+        'min-height:0',
+        'overflow:hidden',
+        'transition:none',
+        'border:none',
+        'box-shadow:0 0 20px rgba(34,197,94,0.4)',
+        'display:flex',
+        'flex-direction:column',
+        'align-items:center',
+        'justify-content:center',
+        'gap:0'
+    ].join(';')
+
+    modal.offsetHeight
+
+    var circleSize = Math.min(rect.width, rect.height)
+    if (circleSize < 30) circleSize = 30
+
+    modal.style.transition = 'width 0.5s ease, height 0.5s ease, left 0.5s ease, top 0.5s ease, border-radius 0.5s ease'
+    modal.style.width = circleSize + 'px'
+    modal.style.height = circleSize + 'px'
+    modal.style.left = (rect.left + rect.width / 2 - circleSize / 2) + 'px'
+    modal.style.top = (rect.top + rect.height / 2 - circleSize / 2) + 'px'
+    modal.style.borderRadius = '50%'
+
+    setTimeout(function() {
+        modal.style.transition = 'none'
+
+        var startCX = rect.left + rect.width / 2
+        var startCY = rect.top + rect.height / 2
+        var endCX = window.innerWidth / 2
+        var endCY = window.innerHeight / 2
+
+        var cpX = (startCX + endCX) / 2 + (startCY > endCY ? 120 : -120)
+        var cpY = Math.min(startCY, endCY) - 100
+
+        var duration = 900
+        var arcStart = performance.now()
+        var bgShown = false
+
+        function animateArc(now) {
+            var t = Math.min((now - arcStart) / duration, 1)
+            var ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
+
+            var cx = (1 - ease) * (1 - ease) * startCX + 2 * (1 - ease) * ease * cpX + ease * ease * endCX
+            var cy = (1 - ease) * (1 - ease) * startCY + 2 * (1 - ease) * ease * cpY + ease * ease * endCY
+
+            var expandPhase = Math.max(0, (t - 0.55) / 0.45)
+            var ee = expandPhase < 0.5 ? 2 * expandPhase * expandPhase : 1 - Math.pow(-2 * expandPhase + 2, 2) / 2
+
+            if (expandPhase > 0.05 && !bgShown) {
+                bgShown = true
+                overlayBg.style.transition = 'opacity 0.5s ease'
+                overlayBg.style.opacity = '1'
+            }
+
+            var curW = circleSize + (modalW - circleSize) * ee
+            var curH = circleSize + (modalH - circleSize) * ee
+            var curBR = 50 - (50 - 4) * ee
+
+            if (ee > 0) {
+                var p = ee
+                modal.style.background = 'linear-gradient(135deg, rgb(' +
+                    Math.round(21 + (26 - 21) * p) + ',' + Math.round(128 + (26 - 128) * p) + ',' + Math.round(61 + (46 - 61) * p) + '), rgb(' +
+                    Math.round(34 + (15 - 34) * p) + ',' + Math.round(197 + (15 - 197) * p) + ',' + Math.round(94 + (26 - 94) * p) + '))'
+                if (ee > 0.5) {
+                    modal.style.border = '1px solid rgba(34, 197, 94, ' + ((ee - 0.5) * 2 * 0.3) + ')'
+                    modal.style.boxShadow = '0 0 ' + (20 + 40 * ee) + 'px rgba(34,197,94,' + (0.4 - 0.25 * ee) + ')'
+                }
+            }
+
+            modal.style.left = (cx - curW / 2) + 'px'
+            modal.style.top = (cy - curH / 2) + 'px'
+            modal.style.width = curW + 'px'
+            modal.style.height = curH + 'px'
+            modal.style.borderRadius = curBR + '%'
+            modal.style.padding = (40 * ee) + 'px'
+
+            if (t < 1) {
+                requestAnimationFrame(animateArc)
+            } else {
+                modal.style.width = modalW + 'px'
+                modal.style.height = modalH + 'px'
+                modal.style.minHeight = modalH + 'px'
+                modal.style.left = (window.innerWidth / 2 - modalW / 2) + 'px'
+                modal.style.top = (window.innerHeight / 2 - modalH / 2) + 'px'
+                modal.style.borderRadius = '20px'
+                modal.style.padding = '40px'
+                modal.style.background = 'linear-gradient(135deg, #1a1a2e, #0f0f1a)'
+                modal.style.border = '1px solid rgba(34, 197, 94, 0.3)'
+                modal.style.boxShadow = '0 0 60px rgba(34, 197, 94, 0.15)'
+                modal.style.overflowY = 'auto'
+                modal.style.gap = '16px'
+
+                showBadgeContent(modal, icon, textContainer)
+            }
+        }
+
+        requestAnimationFrame(animateArc)
+    }, 520)
+}
+
+function showBadgeContent(modal, icon, textContainer) {
+    icon.style.display = 'flex'
+    icon.style.transition = 'opacity 0.5s ease'
+    requestAnimationFrame(function() { icon.style.opacity = '1' })
+
+    textContainer.innerHTML =
+        '<div class="badge-text-label">RU</div>' +
+        '<div class="badge-text-ru" id="badgeTextRu"></div>' +
+        '<div class="badge-text-divider"></div>' +
+        '<div class="badge-text-label">EN</div>' +
+        '<div class="badge-text-en" id="badgeTextEn"></div>'
+
+    setTimeout(function() {
+        textContainer.classList.add('content-visible')
+        setTimeout(function() {
+            type_into_element(document.getElementById('badgeTextRu'), BADGE_TEXT_RU, 12, function() {
+                type_into_element(document.getElementById('badgeTextEn'), BADGE_TEXT_EN, 12)
+            })
+            badge_animation_running = false
+        }, 400)
+    }, 200)
+}
+
+function showBadgeContent(modal, icon, textContainer) {
+    icon.style.display = 'flex'
+    icon.style.transition = 'opacity 0.5s ease'
+    requestAnimationFrame(function() { icon.style.opacity = '1' })
+
+    textContainer.innerHTML =
+        '<div class="badge-text-label">RU</div>' +
+        '<div class="badge-text-ru" id="badgeTextRu"></div>' +
+        '<div class="badge-text-divider"></div>' +
+        '<div class="badge-text-label">EN</div>' +
+        '<div class="badge-text-en" id="badgeTextEn"></div>'
+
+    setTimeout(function() {
+        textContainer.classList.add('content-visible')
+        setTimeout(function() {
+            type_into_element(document.getElementById('badgeTextRu'), BADGE_TEXT_RU, 12, function() {
+                type_into_element(document.getElementById('badgeTextEn'), BADGE_TEXT_EN, 12)
+            })
+            badge_animation_running = false
+        }, 400)
+    }, 200)
+}
+
+function type_into_element(el, text, speed, callback) {
+    if (!el) return
+    el.innerHTML = ''
+    var chars = []
+    for (var i = 0; i < text.length; i++) {
+        var span = document.createElement('span')
+        span.className = 'badge-char' + (text[i] === ' ' ? ' space' : '')
+        span.textContent = text[i]
+        el.appendChild(span)
+        chars.push(span)
+    }
+    var index = 0
+    var interval = setInterval(function() {
+        if (index < chars.length) {
+            chars[index].classList.add('visible')
+            index++
+        } else {
+            clearInterval(interval)
+            if (callback) callback()
+        }
+    }, speed)
+    badge_typing_intervals.push(interval)
+}
+
+function close_badge_modal() {
+    if (badge_animation_running) return
+    badge_animation_running = true
+
+    var modal = document.getElementById('badgeModal')
+    var overlay = document.getElementById('badgeOverlay')
+    var icon = modal.querySelector('.badge-modal-icon')
+    var textContainer = document.getElementById('badgeModalText')
+    var overlayBg = document.getElementById('badgeOverlayBg')
+
+    badge_typing_intervals.forEach(clearInterval)
+    badge_typing_intervals = []
+
+    var allChars = document.querySelectorAll('#badgeModalText .badge-char.visible')
+    var chars = Array.from(allChars).reverse()
+    var ci = 0
+
+    if (chars.length === 0) {
+        afterTextErased()
+        return
+    }
+
+    var eraseInterval = setInterval(function() {
+        for (var k = 0; k < 6 && ci < chars.length; k++) {
+            chars[ci].classList.remove('visible')
+            ci++
+        }
+        if (ci >= chars.length) {
+            clearInterval(eraseInterval)
+            afterTextErased()
+        }
+    }, 4)
+
+    function afterTextErased() {
+        textContainer.classList.remove('content-visible')
+
+        setTimeout(function() {
+            icon.style.transition = 'opacity 0.4s ease'
+            icon.style.opacity = '0'
+
+            setTimeout(function() {
+                icon.style.display = 'none'
+                textContainer.innerHTML = ''
+                startCloseAnimation()
+            }, 400)
+        }, 200)
+    }
+
+    function startCloseAnimation() {
+        overlayBg.style.transition = 'opacity 0.5s ease'
+        overlayBg.style.opacity = '0'
+
+        var circleSize = 36
+
+        var targetRect = badge_source_rect
+        if (badge_source_el) {
+            targetRect = badge_source_el.getBoundingClientRect()
+        }
+        var targetW = targetRect.width
+        var targetH = targetRect.height
+        var endCX = targetRect.left + targetW / 2
+        var endCY = targetRect.top + targetH / 2
+
+        var modalRect = modal.getBoundingClientRect()
+        var startCX = modalRect.left + modalRect.width / 2
+        var startCY = modalRect.top + modalRect.height / 2
+        var startW = modalRect.width
+        var startH = modalRect.height
+
+        modal.style.transition = 'none'
+
+        var cpX = (startCX + endCX) / 2 + (startCY < endCY ? 120 : -120)
+        var cpY = Math.min(startCY, endCY) - 100
+
+        var duration = 900
+        var arcStart = performance.now()
+
+        function animateBack(now) {
+            var t = Math.min((now - arcStart) / duration, 1)
+            var ease = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2
+
+            var cx = (1 - ease) * (1 - ease) * startCX + 2 * (1 - ease) * ease * cpX + ease * ease * endCX
+            var cy = (1 - ease) * (1 - ease) * startCY + 2 * (1 - ease) * ease * cpY + ease * ease * endCY
+
+            var shrinkPhase = ease
+            var curW, curH, curBR
+
+            if (shrinkPhase < 0.4) {
+                var sp = shrinkPhase / 0.4
+                var se = sp < 0.5 ? 2 * sp * sp : 1 - Math.pow(-2 * sp + 2, 2) / 2
+                curW = startW + (circleSize - startW) * se
+                curH = startH + (circleSize - startH) * se
+                curBR = 4 + (50 - 4) * se
+
+                var p = se
+                modal.style.background = 'linear-gradient(135deg, rgb(' +
+                    Math.round(26 + (21 - 26) * p) + ',' + Math.round(26 + (128 - 26) * p) + ',' + Math.round(46 + (61 - 46) * p) + '), rgb(' +
+                    Math.round(15 + (34 - 15) * p) + ',' + Math.round(15 + (197 - 15) * p) + ',' + Math.round(26 + (94 - 26) * p) + '))'
+                modal.style.border = 'none'
+                modal.style.padding = (40 * (1 - se)) + 'px'
+            } else if (shrinkPhase >= 0.4 && shrinkPhase < 0.85) {
+                curW = circleSize
+                curH = circleSize
+                curBR = 50
+                modal.style.background = 'linear-gradient(135deg, #15803d, #22c55e)'
+                modal.style.border = 'none'
+                modal.style.padding = '0'
+            } else {
+                var mp = (shrinkPhase - 0.85) / 0.15
+                var me = mp < 0.5 ? 2 * mp * mp : 1 - Math.pow(-2 * mp + 2, 2) / 2
+                curW = circleSize + (targetW - circleSize) * me
+                curH = circleSize + (targetH - circleSize) * me
+                curBR = 50 - (50 - 30) * me
+                modal.style.background = 'linear-gradient(135deg, #15803d, #22c55e)'
+                modal.style.border = 'none'
+                modal.style.padding = '0'
+            }
+
+            modal.style.left = (cx - curW / 2) + 'px'
+            modal.style.top = (cy - curH / 2) + 'px'
+            modal.style.width = curW + 'px'
+            modal.style.height = curH + 'px'
+            modal.style.minHeight = '0'
+            modal.style.borderRadius = curBR + '%'
+            modal.style.overflow = 'hidden'
+            modal.style.boxShadow = '0 0 20px rgba(34,197,94,0.4)'
+            modal.style.gap = '0'
+
+            if (t < 1) {
+                requestAnimationFrame(animateBack)
+            } else {
+                modal.style.left = targetRect.left + 'px'
+                modal.style.top = targetRect.top + 'px'
+                modal.style.width = targetW + 'px'
+                modal.style.height = targetH + 'px'
+                modal.style.borderRadius = '100px'
+
+                setTimeout(function() {
+                    modal.style.transition = 'opacity 0.3s ease'
+                    modal.style.opacity = '0'
+
+                    if (badge_source_el) {
+                        badge_source_el.classList.remove('badge-hidden')
+                    }
+
+                    setTimeout(function() {
+                        overlay.classList.remove('active')
+                        modal.style.cssText = ''
+                        badge_animation_running = false
+                    }, 300)
+                }, 50)
+            }
+        }
+
+        requestAnimationFrame(animateBack)
+    }
+}
+
+window.open_badge_modal = open_badge_modal
+
 function init() {
     render_clients()
     init_flip_words()
@@ -1727,7 +2136,7 @@ function init() {
     init_hero_highlight()
     init_sidebar()
     init_text_effects()
-    
+    document.getElementById('badgeOverlayBg').addEventListener('click', close_badge_modal)
     setTimeout(type_text, 1000)
 }
 
