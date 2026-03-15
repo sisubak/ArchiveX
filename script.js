@@ -104,7 +104,7 @@ const clientsData = [
         badge: "ddnet • cheat",
         description: "powerful client for ddnet with excellent cheat functionality",
         image: "https://i.postimg.cc/G2v8F0C2/77CC8FC6-1104-4999-8425-9563957F3F83.png",
-        download: "https://drive.google.com/file/d/1LpZuH7zDUTwNF1EQowUntNUQDPUwB4CN/view?usp=drive_link",
+        download: "https://drive.google.com/drive/folders/1ZzfwsPvH3CBJ-mEdlpjjB1NTRAbbwr7C",
         arts: ["https://i.postimg.cc/9FGhQvZy/image.png"]
     },
     {
