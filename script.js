@@ -182,7 +182,7 @@ const clientsData = [
             "https://i.postimg.cc/kMKZQWGt/image.png",
             "https://i.postimg.cc/MTRsY8WL/image.png",
             "https://i.postimg.cc/Qdt0y78g/image.png"
-        ]https://i.postimg.cc/VL8Wf4SN/izobrazenie.png
+        ]
     },
     {
         title: "KoshkaClient",
