@@ -119,6 +119,20 @@ const clientsData = [
         download: "https://drive.google.com/file/d/1OBtyT__yH9MmuFxgcddySd5B2I3EfTL3/view?usp=sharing"
     },
     {
+        title: "PastaLand",
+        type: "ddnet cheat",
+        badge: "ddnet • cheat",
+        description: "bro, idk waht say abt is, is just...",
+        vibecoded: true,
+        image: "https://i.postimg.cc/j2Y4mhV4/Pastaland-Uy-K7BGbp-XS.png",
+        download: "https://drive.google.com/file/d/1CzglqPTGJ8e52ZHq_-_1dbWRdud3AE5R/view?usp=sharing",
+        telegram: "https://t.me/RevolveTeam",
+        discord: "https://discord.gg/GyjKWeAYCv",
+        arts: [
+            "https://i.postimg.cc/VL8Wf4SN/izobrazenie.png"
+        ]
+    },
+    {
         title: "MRXClient",
         type: "ddnet cheat",
         badge: "ddnet • cheat",
@@ -168,7 +182,7 @@ const clientsData = [
             "https://i.postimg.cc/kMKZQWGt/image.png",
             "https://i.postimg.cc/MTRsY8WL/image.png",
             "https://i.postimg.cc/Qdt0y78g/image.png"
-        ]
+        ]https://i.postimg.cc/VL8Wf4SN/izobrazenie.png
     },
     {
         title: "KoshkaClient",
