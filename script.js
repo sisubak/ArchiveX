@@ -125,7 +125,8 @@ const clientsData = [
         description: "client for those who like to stay undetected and play novice maps",
         vibecoded: true,
         image: "https://i.postimg.cc/ZRPHGG4q/izobrazenie.png",
-        download: "https://drive.google.com/file/d/12gKIkI7XXIhgmpNRsxM9-74HrIx1aT5k/view?usp=sharing"
+        download: "https://drive.google.com/file/d/12gKIkI7XXIhgmpNRsxM9-74HrIx1aT5k/view?usp=sharing",
+        telegram: "https://t.me/mrxclient"
     },
     {
         title: "LowC",
@@ -134,7 +135,8 @@ const clientsData = [
         description: "client for KoG, open menu — insert",
         vibecoded: true,
         image: "https://i.postimg.cc/nrWDnDn2/DDNet-7ml-CPe2tl-P.png",
-        download: "https://drive.google.com/file/d/17Dqd48oY7qK0EU9dTyjMcD66l0klbVY-/view?usp=sharing"
+        download: "https://drive.google.com/file/d/17Dqd48oY7qK0EU9dTyjMcD66l0klbVY-/view?usp=sharing",
+        discord: "https://discord.gg/9kSq2fchVn"
     },
     {
         title: "DMD Client beta",
