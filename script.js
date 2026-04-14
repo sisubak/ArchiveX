@@ -40,33 +40,9 @@ const clientsData = [
         title: "krx client 1.32 crack",
         type: "ddnet",
         badge: "ddnet • cheat • crack",
-        description: "crack of the cracked version of krx client 1.32 but with non-working cog, archive password: 1",
+        description: "crack of the cracked version of krx client 1.32 but with non-working kog, archive password: 1",
         image: "https://i.postimg.cc/25c5w7b1/image.png",
         download: "https://drive.google.com/file/d/1DlHPGvhOozqGMM2PliZKBgY6QtD4jjvU/view?usp=sharing",
-        arts: [
-            "https://i.postimg.cc/kgb7KB0Q/image.png",
-            "https://i.postimg.cc/VNFQWMD5/image.png"
-        ]
-    },
-    {
-        title: "krx client 1.31 crack",
-        type: "ddnet",
-        badge: "ddnet • cheat • crack",
-        description: "oh a crack 1.31 how original, same logic as the new crack, password: 1",
-        image: "https://i.postimg.cc/FKJHr92F/izobrazenie.png",
-        download: "https://drive.google.com/file/d/1eTfpQ2yhXJVqJgWP5wokEOalHaJWaTEf/view?usp=sharing",
-        arts: [
-            "https://i.postimg.cc/kgb7KB0Q/image.png",
-            "https://i.postimg.cc/VNFQWMD5/image.png"
-        ]
-    },
-    {
-        title: "krx client 1.32 crack NEW",
-        type: "ddnet",
-        badge: "ddnet • cheat • crack",
-        description: "the same crack but a COMPLETELY new version that requires nothing but launching the client, password: 1",
-        image: "https://i.postimg.cc/25c5w7b1/image.png",
-        download: "https://drive.google.com/file/d/1gZcg93sA82rroRTp8M7NNZRKeeV0hsfF/view?usp=sharing",
         arts: [
             "https://i.postimg.cc/kgb7KB0Q/image.png",
             "https://i.postimg.cc/VNFQWMD5/image.png"
@@ -150,6 +126,33 @@ const clientsData = [
         vibecoded: true,
         image: "https://i.postimg.cc/ZRPHGG4q/izobrazenie.png",
         download: "https://drive.google.com/file/d/12gKIkI7XXIhgmpNRsxM9-74HrIx1aT5k/view?usp=sharing"
+    },
+    {
+        title: "LowC",
+        type: "ddnet cheat",
+        badge: "ddnet • cheat",
+        description: "client for KoG, open menu — insert",
+        vibecoded: true,
+        image: "https://i.postimg.cc/nrWDnDn2/DDNet-7ml-CPe2tl-P.png",
+        download: "https://drive.google.com/file/d/17Dqd48oY7qK0EU9dTyjMcD66l0klbVY-/view?usp=sharing"
+    },
+    {
+        title: "DMD Client beta",
+        type: "ddnet cheat",
+        badge: "ddnet • cheat",
+        description: "good client for novice and other things",
+        vibecoded: true,
+        image: "https://i.postimg.cc/3w6N4HsH/DDNet-Vym-SZa-LDA9.png",
+        download: "https://drive.google.com/file/d/1zZ1xuD-xH1QS_ATKvfJ8IpDDXu7xHqwe/view?usp=sharing"
+    },
+    {
+        title: "Flux",
+        type: "ddnet cheat",
+        badge: "ddnet • cheat",
+        description: "cool client with good functions",
+        vibecoded: true,
+        image: "https://i.postimg.cc/W4fFGZkZ/Flux-Client-Djf-VQRPzp4.png",
+        download: "https://drive.google.com/file/d/19_Hu-kkKL3s6BmW3lbGLByfNmJwPqRs9/view?usp=sharing"
     },
     {
         title: "Ae86 Client vAe4",
