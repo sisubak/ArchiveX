@@ -171,6 +171,46 @@ const clientsData = [
         download: "https://drive.google.com/file/d/19_Hu-kkKL3s6BmW3lbGLByfNmJwPqRs9/view?usp=sharing"
     },
     {
+        title: "kaizo client",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "good client for legit kog and others things ",
+        image: "https://i.postimg.cc/2Sgjrj9c/DDNet-zt3pv-O12n-I.png",
+        download: "https://drive.google.com/file/d/1tmADwYwhqbX0G4hyH7t30vtEv-H3PFWP/view?usp=sharing"
+    },
+    {
+        title: "Duck-N Infclass client",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "duck client + infclass client. ALl lol",
+        image: "https://i.postimg.cc/cLkhJ2fj/Infclass-LLXN8ERl-Hk.png",
+        download: "https://drive.google.com/file/d/1uaiibkemJtJAEveQdTVZNOFzHkq8HbGJ/view?usp=sharing"
+    },
+    {
+        title: "QmClient",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "China client, too good ig",
+        image: "https://i.postimg.cc/yNM876x1/DDNet-Hmb-ULBBL9d.png",
+        download: "https://drive.google.com/file/d/1IvjPotcD9roXeZKHBasXecKMrYOToXTy/view?usp=sharing"
+    },
+    {
+        title: "HighTickrate client",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "joke client, just doing u faster",
+        image: "https://i.postimg.cc/yxgdKJXH/DDNet-Gi-Ji-Hnmvwl.png",
+        download: "https://drive.google.com/file/d/1ACo4_HMpPoPUpIzV9lPbe8N58jCspCQU/view?usp=sharing"
+    },
+    {
+        title: "YairClient",
+        type: "ddnet",
+        badge: "ddnet",
+        description: "old ddnet client",
+        image: "https://i.postimg.cc/J4cnLH9k/DDNet-kum-L65VTA8.png",
+        download: "https://drive.google.com/file/d/1tjkJn2VkTMFMtxRJBCrUpqi3emoBRzqp/view?usp=sharing"
+    },
+    {
         title: "Ae86 Client vAe4",
         type: "teeworlds cheat",
         badge: "teeworlds • cheat",
