@@ -54,7 +54,7 @@ const clientsData = [
         badge: "ddnet • cheat • crack",
         description: "krx crack 1.30 omg",
         image: "https://i.postimg.cc/Z5NNLzV8/izobrazenie.png",
-        download: "https://drive.google.com/file/d/1ZkNg70TlXyHL6iJWhf1pwEQdOMMqDviS/view?usp=sharing",
+        download: "https://drive.google.com/file/d/1hm-y0u61PsUgOmtp46UvP-kfsP0D2G4z/view?usp=sharing",
         arts: [
             "https://i.postimg.cc/kgb7KB0Q/image.png",
             "https://i.postimg.cc/VNFQWMD5/image.png"
